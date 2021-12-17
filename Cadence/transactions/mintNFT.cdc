@@ -1,5 +1,5 @@
-import NFTContract from 0xc3efbc9926eb00eb
-transaction(templateId:UInt64, receiptAccount:Address) {
+import NFTContract from  0x01cf0e2f2f715450
+transaction() {
 
     prepare(acct: AuthAccount) {
         let actorResource = acct.getCapability
@@ -8,7 +8,7 @@ transaction(templateId:UInt64, receiptAccount:Address) {
         .borrow() ?? 
         panic("could not borrow a reference to the NFTMethodsCapability interface")
 
-    actorResource.mintNFT(templateId: templateId, account: receiptAccount)
+    actorResource.mintNFT(templateId: 2, account: 0xe03daebed8ca0615)
 
     }
 }

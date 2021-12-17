@@ -1,4 +1,4 @@
-import NFTContract from 0xc3efbc9926eb00eb
+import NFTContract from  0x01cf0e2f2f715450
 transaction (){
   
     prepare(acct: AuthAccount) {
@@ -9,12 +9,12 @@ transaction (){
             panic("could not borrow a reference to the NFTMethodsCapability interface")
 
         actorResource.createNewBrand(
-        brandName: "Troon",
-        author: 0xc3efbc9926eb00eb,
+        brandName: "Madbop",
+        author: 0xf3fcd2c1a78f5eee,
         data: {
-            "name":"Troon",
+            "name":"Madbop",
             "description":"WE BUILD DIGITAL SOLUTIONS THAT ADVANCE,IGNITE,AND EVOLVE YOUR BUSINESS",
-            "url":"https://troontechnologies.com/"
+            "url":"https://madbop.com/"
         })
     
     }

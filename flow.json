@@ -5,7 +5,11 @@
       "serviceAccount": "emulator-account"
     }
   },
-  "contracts": {},
+  "contracts": {
+    "NonFungibleToken": "./Cadence/contracts/NonFungibleToken.cdc",
+    "NFTContract": "./Cadence/contracts/NFTContract.cdc",
+    "MadbopContract": "./Cadence/contracts/MadbopContract.cdc"
+  },
   "networks": {
     "emulator": "127.0.0.1:3569",
     "mainnet": "access.mainnet.nodes.onflow.org:9000",
@@ -16,10 +20,52 @@
       "address": "f8d6e0586b0a20c7",
       "key": "df5afc9179a82baadec14ad3e3bd455627de06067242ff51c30a5667d7de638e"
     },
+    "emulator-NFTContract": {
+      "address": "0x01cf0e2f2f715450",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
+      }
+    },
+    "emulator-NonFungibleToken": {
+      "address": "0x179b6b1cb6755e31",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
+      }
+    },
+    "emulator-madbop": {
+      "address": "0xf3fcd2c1a78f5eee",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
+      }
+    },
+    "emulator-user": {
+      "address": "0xe03daebed8ca0615",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
+      }
+    },
     "madbop-account": {
       "address": "0x9ddbd00b5f35899c",
       "key": "948c9a3142dde087726b776308f3de2077e455af9436dc356f9222d47240006a"
     }
   },
-  "deployments": {}
+  "deployments": {
+    "emulator": {
+      "emulator-NonFungibleToken": ["NonFungibleToken"],
+      "emulator-NFTContract": ["NFTContract"],
+      "emulator-madbop": ["MadbopContract"]
+    }
+  }
 }

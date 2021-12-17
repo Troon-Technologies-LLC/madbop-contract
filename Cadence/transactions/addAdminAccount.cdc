@@ -1,9 +1,10 @@
-import NFTContract from 0xc3efbc9926eb00eb
+import NFTContract from  0x01cf0e2f2f715450
+
 transaction() {
     prepare(signer: AuthAccount) {
 
         // get the public account object for the Admin
-        let TemplateAdminAccount = getAccount(0x9ddbd00b5f35899c)
+        let TemplateAdminAccount = getAccount(0xf3fcd2c1a78f5eee)
 
         // get the public capability from the Admin's public storage
         let TemplateAdminResource = TemplateAdminAccount.getCapability

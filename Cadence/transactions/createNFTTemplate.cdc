@@ -1,17 +1,15 @@
-import NFTContract from 0xc3efbc9926eb00eb
+import NFTContract from  0x01cf0e2f2f715450
 transaction() {
 
      prepare(acct: AuthAccount) {
 
         let actorResource = acct.getCapability
-        <&{NFTContract.NFTMethodsCapability}>
-        (/private/NFTMethodsCapability)
-        .borrow() ?? 
-        panic("could not borrow a reference to the NFTMethodsCapability interface")
+            <&{NFTContract.NFTMethodsCapability}>
+            (/private/NFTMethodsCapability)
+            .borrow() ?? 
+            panic("could not borrow a reference to the NFTMethodsCapability interface")
 
-        let extra : {String: AnyStruct} = {
-                "name":"nasir&irfan" // string
-        }
+
         let immutableData : {String: AnyStruct} = {
             "nftContent" : "Image",
             "contentType"  : "https://troontechnologies.com",

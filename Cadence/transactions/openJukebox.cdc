@@ -1,0 +1,18 @@
+import MadbopContract from  0xf3fcd2c1a78f5eee
+import NFTContract from  0x01cf0e2f2f715450
+transaction(){
+    prepare(acct: AuthAccount) {
+        let account = getAccount(0xf3fcd2c1a78f5eee)
+        let adminRef = account
+                .getCapability<&{MadbopContract.JukeboxPublic}>(MadbopContract.JukeboxPublicPath)
+                .borrow()
+                ?? panic("Could not borrow admin reference")
+            
+        let collectionRef =  acct.borrow<&NFTContract.Collection>(from: NFTContract.CollectionStoragePath)
+        ??panic("could not borrow a reference to the the stored nft Collection")
+
+        adminRef.openJukebox(jukeboxNFT : <- collectionRef.withdraw(withdrawID: 1), receiptAddress: 0xe03daebed8ca0615)  
+    }
+
+
+}

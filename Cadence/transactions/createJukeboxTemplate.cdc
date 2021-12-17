@@ -1,25 +1,22 @@
-import NFTContract from 0xc3efbc9926eb00eb
-
+import NFTContract from  0x01cf0e2f2f715450
 transaction() {
 
-     prepare(acct: AuthAccount) {
+        prepare(acct: AuthAccount) {
         
 
 
         let actorResource = acct.getCapability
-        <&{NFTContract.NFTMethodsCapability}>
-        (/private/NFTMethodsCapability)
-        .borrow() ?? 
-        panic("could not borrow a reference to the NFTMethodsCapability interface")
-       
-      
-        let nftTemplateIds : [AnyStruct] = [1,2]
+            <&{NFTContract.NFTMethodsCapability}>
+            (/private/NFTMethodsCapability)
+            .borrow() ?? 
+            panic("could not borrow a reference to the NFTMethodsCapability interface")
+            let nftTemplateIds : [AnyStruct] = [1]
 
         let immutableData : {String: AnyStruct} = {
             "image" : "https://troontechnologies.com",
             "title":"First NFT",
-            "startDate":  1638993319.0 as Fix64,
-            "endDate":   1638999919.0 as Fix64,
+            "startDate":  1641199919.0 as Fix64,
+            "endDate":   1642299919.0 as Fix64,
             "cost":  30.0 as Fix64,
             "artistName":  " Irfan",
             "artistDescription": "irfan is a music artist",

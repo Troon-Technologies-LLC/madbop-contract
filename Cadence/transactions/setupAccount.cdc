@@ -1,4 +1,5 @@
-import NFTContract from 0xc3efbc9926eb00eb
+import NFTContract from  0x01cf0e2f2f715450
+import NonFungibleToken from 0x179b6b1cb6755e31
 transaction() {
     prepare(signer: AuthAccount) {
         let adminResouce <- NFTContract.createAdminResource()
