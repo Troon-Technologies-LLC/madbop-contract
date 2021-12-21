@@ -1,21 +1,13 @@
-import MadbopContract from  0xf3fcd2c1a78f5eee
+import MadbopContract from  0xa888f479b6525db2
 
-transaction(){
+transaction(templateId:UInt64){
     let adminRef: &MadbopContract.Jukebox
     prepare(acct: AuthAccount) {
         self.adminRef = acct.borrow<&MadbopContract.Jukebox>(from:MadbopContract.JukeboxStoragePath)
         ??panic("could not borrow admin reference")
     }
-
-
-
     execute{
-
-        self.adminRef.createJukebox(templateId: 2, openDate: 1.0)
-
-        log("jukebox created")
-
+        self.adminRef.createJukebox(templateId: templateId, openDate: 1.0)
     }
-
 
 }

@@ -55,17 +55,16 @@
         "signatureAlgorithm": "ECDSA_secp256k1",
         "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
       }
-    },
-    "madbop-account": {
-      "address": "0x9ddbd00b5f35899c",
-      "key": "948c9a3142dde087726b776308f3de2077e455af9436dc356f9222d47240006a"
     }
   },
-  "deployments": {
-    "emulator": {
-      "emulator-NonFungibleToken": ["NonFungibleToken"],
-      "emulator-NFTContract": ["NFTContract"],
-      "emulator-madbop": ["MadbopContract"]
+  "madbop-account": {
+    "address": "0xa888f479b6525db2",
+    "key": {
+      "type": "hex",
+      "hashAlgorithm": "SHA3_256",
+      "signatureAlgorithm": "ECDSA_secp256k1",
+      "privateKey": "0ccc233c1b17c809b79edd136805d04d71cd7fa1615272f4dc384039d3f59f5d"
     }
-  }
+  },
+  "deployments": {}
 }

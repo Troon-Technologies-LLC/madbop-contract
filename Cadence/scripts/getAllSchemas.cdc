@@ -1,5 +1,4 @@
-import NFTContract from "./../contracts/NFTContract.cdc"
-import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
+import NFTContract from  0xd4221a1979538992
 pub fun main(): {UInt64:NFTContract.Schema} {
     return NFTContract.getAllSchemas()
 

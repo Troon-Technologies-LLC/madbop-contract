@@ -1,4 +1,5 @@
-import NFTContract from  0x01cf0e2f2f715450
+import NFTContract from  0xd4221a1979538992
+import NonFungibleToken from 0x631e88ae7f1d7c20
 transaction (){
 
       prepare(acct: AuthAccount) {
@@ -18,7 +19,7 @@ transaction (){
             "nftCover":  NFTContract.SchemaType.String
             }
 
-            actorResource.createSchema(schemaName: "nft-series", format: format, author: 0xf3fcd2c1a78f5eee)
+            actorResource.createSchema(schemaName: "nft-series", format: format, author: 0xa888f479b6525db2)
             log("schema created")
       }
 }

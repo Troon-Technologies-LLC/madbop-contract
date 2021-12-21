@@ -1,4 +1,4 @@
-import NonFungibleToken from 0x179b6b1cb6755e31
+import NonFungibleToken from 0x631e88ae7f1d7c20
 pub contract NFTContract : NonFungibleToken {
 
     pub event ContractInitialized()
