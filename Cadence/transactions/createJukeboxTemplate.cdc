@@ -1,4 +1,5 @@
-import NFTContract from  0x01cf0e2f2f715450
+import NFTContract from  0xc3efbc9926eb00eb
+import NonFungibleToken from 0x631e88ae7f1d7c20
 transaction() {
 
         prepare(acct: AuthAccount) {
@@ -10,7 +11,7 @@ transaction() {
             (/private/NFTMethodsCapability)
             .borrow() ?? 
             panic("could not borrow a reference to the NFTMethodsCapability interface")
-            let nftTemplateIds : [AnyStruct] = [1]
+            let nftTemplateIds : [AnyStruct] = [7]
 
         let immutableData : {String: AnyStruct} = {
             "image" : "https://troontechnologies.com",
@@ -22,7 +23,7 @@ transaction() {
             "artistDescription": "irfan is a music artist",
             "nftTemplates": nftTemplateIds      
         }
-        actorResource.createTemplate(brandId: 1, schemaId: 2, maxSupply: 100, immutableData: immutableData)
+        actorResource.createTemplate(brandId: 4, schemaId: 5, maxSupply: 100, immutableData: immutableData)
         log("Template created")
     }
 }

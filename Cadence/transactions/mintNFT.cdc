@@ -1,4 +1,5 @@
-import NFTContract from  0x01cf0e2f2f715450
+import NFTContract from  0xc3efbc9926eb00eb
+import NonFungibleToken from 0x631e88ae7f1d7c20
 transaction() {
 
     prepare(acct: AuthAccount) {
@@ -8,7 +9,7 @@ transaction() {
         .borrow() ?? 
         panic("could not borrow a reference to the NFTMethodsCapability interface")
 
-    actorResource.mintNFT(templateId: 2, account: 0xe03daebed8ca0615)
+    actorResource.mintNFT(templateId: 8, account: 0xf3e107721f7302e7)
 
     }
 }
