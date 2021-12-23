@@ -1,5 +1,5 @@
-import NFTContract from  0xc3efbc9926eb00eb
-import NonFungibleToken from 0x631e88ae7f1d7c20
+import NFTContract from "./NFTContract.cdc"
+import NonFungibleToken from "./NonFungibleToken.cdc"
 pub contract MadbopContract {
 
 

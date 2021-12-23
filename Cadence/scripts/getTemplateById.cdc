@@ -1,4 +1,5 @@
-import NFTContract from  0xc3efbc9926eb00eb
+import NFTContract from "./../contracts/NFTContract.cdc"
+import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
 pub fun main(): NFTContract.Template {
-    return NFTContract.getTemplateById(templateId:2)
+    return NFTContract.getTemplateById(templateId:1)
 }

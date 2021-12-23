@@ -1,4 +1,4 @@
-import MadbopContract from  0xf3fcd2c1a78f5eee
+import MadbopContract from  "./../contracts/MadbopContract.cdc"
 transaction(){
     let adminRef: &MadbopContract.Jukebox
     prepare(acct: AuthAccount) {

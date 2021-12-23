@@ -1,4 +1,4 @@
-import MadbopContract from  0xe9c0c532df97e099
+import MadbopContract from  "./../contracts/MadbopContract.cdc"
 
 pub fun main(): MadbopContract.JukeboxData {
 
