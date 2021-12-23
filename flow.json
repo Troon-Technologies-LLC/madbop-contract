@@ -71,7 +71,6 @@
   },
   "deployments": {
     "testnet": {
-      "NFTContract-account": ["NFTContract"],
       "madbop-account": ["MadbopContract"]
     }
   }

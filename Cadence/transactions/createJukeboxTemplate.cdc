@@ -11,7 +11,7 @@ transaction() {
             (/private/NFTMethodsCapability)
             .borrow() ?? 
             panic("could not borrow a reference to the NFTMethodsCapability interface")
-            let nftTemplateIds : [AnyStruct] = [7]
+            let nftTemplateIds : [AnyStruct] = [14]
 
         let immutableData : {String: AnyStruct} = {
             "image" : "https://troontechnologies.com",

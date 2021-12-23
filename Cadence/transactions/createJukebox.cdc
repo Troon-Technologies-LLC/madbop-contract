@@ -11,7 +11,7 @@ transaction(){
 
     execute{
 
-        self.adminRef.createJukebox(templateId: 8, openDate: 1.0)
+        self.adminRef.createJukebox(templateId: 15, openDate: 1.0)
 
         log("jukebox created")
 

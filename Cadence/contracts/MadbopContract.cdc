@@ -117,9 +117,12 @@ pub contract MadbopContract {
             //MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!.openDate >= getCurrentBlock().timestamp
 
             let allIds  = jukeboxTemplateData.immutableData["nftTemplates"]! as! [AnyStruct]
+            let adminRecRef = MadbopContract.adminRef.borrow()
+            ??panic("could not borrow admin reference")
             for tempID in allIds {
-                    MadbopContract.adminRef.borrow()!.mintNFT(templateId: UInt64(tempID as! Int), account: receiptAddress)
-                }             
+            var id = UInt64(tempID as! Int)
+                    adminRecRef.mintNFT(templateId: id, account: receiptAddress)
+                }                       
                //will add an if condition
             emit  JukeboxOpened(nftId:jukeboxNFT.id,receiptAddress:self.owner?.address)
             destroy jukeboxNFT
@@ -152,7 +155,7 @@ pub contract MadbopContract {
             <&{NFTContract.NFTMethodsCapability}>(/private/NFTMethodsCapability)
 
         self.adminRef = adminPrivateCap
-     
+
         self.JukeboxStoragePath = /storage/Jukebox
         self.JukeboxPublicPath  = /public/Jukebox
         
