@@ -10,10 +10,10 @@ transaction (){
             panic("could not borrow a reference to the NFTMethodsCapability interface")
 
         actorResource.createNewBrand(
-        brandName: "Madbop 2",
-        author: 0x7108ffbc084287e4,
+        brandName: "Madbop ",
+        author: 0xf3fcd2c1a78f5eee,
         data: {
-            "name":"Madbop 2",
+            "name":"Madbop ",
             "description":"WE BUILD DIGITAL SOLUTIONS THAT ADVANCE,IGNITE,AND EVOLVE YOUR BUSINESS",
             "url":"https://madbop.com/"
         })

@@ -115,7 +115,7 @@ pub contract MadbopContract {
             assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!=nil, message: "Jukebox is not regiestered") 
 
             //Check if current date is greater or equal than opendate 
-            assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!.openDate <= getCurrentBlock().timestamp, message: "open date must be greater than current date")
+            assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!.openDate <= getCurrentBlock().timestamp, message: "open  current date")
             
 
             let allIds  = jukeboxTemplateData.immutableData["nftTemplates"]! as! [AnyStruct]

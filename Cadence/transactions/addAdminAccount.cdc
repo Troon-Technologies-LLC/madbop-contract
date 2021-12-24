@@ -5,7 +5,7 @@ transaction() {
     prepare(signer: AuthAccount) {
 
         // get the public account object for the Admin
-        let TemplateAdminAccount = getAccount(0x7108ffbc084287e4)
+        let TemplateAdminAccount = getAccount(0xf3fcd2c1a78f5eee)
 
         // get the public capability from the Admin's public storage
         let TemplateAdminResource = TemplateAdminAccount.getCapability
