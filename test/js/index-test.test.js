@@ -218,7 +218,7 @@ describe("Transactions", () => {
     // expect(txResult.errorMessage).toBe("");
   });
 
-  test("test transaction  create brand", async () => {
+  test("test transaction create brand", async () => {
     const name = "createBrand";
 
     // Import participating accounts
@@ -257,7 +257,7 @@ describe("Transactions", () => {
 
     // expect(txResult.errorMessage).toBe("");
   });
-  test("test transaction  create nft Schema", async () => {
+  test("test transaction create nft Schema", async () => {
     const name = "createNFTSchema";
 
     // Import participating accounts
@@ -296,7 +296,7 @@ describe("Transactions", () => {
 
     // expect(txResult.errorMessage).toBe("");
   });
-  test("test transaction  create jukebox schema", async () => {
+  test("test transaction create jukebox schema", async () => {
     const name = "createJukeboxSchema";
 
     // Import participating accounts
@@ -335,7 +335,7 @@ describe("Transactions", () => {
 
     // expect(txResult.errorMessage).toBe("");
   });
-  test("test transaction  add madbop data", async () => {
+  test("test transaction add madbop data", async () => {
     const name = "addMadbopData";
 
     // Import participating accounts
@@ -375,7 +375,7 @@ describe("Transactions", () => {
 
     // expect(txResult.errorMessage).toBe("");
   });
-  test("test transaction  create nft template", async () => {
+  test("test transaction create nft template", async () => {
     const name = "createNFTTemplate";
 
     // Import participating accounts
@@ -415,7 +415,7 @@ describe("Transactions", () => {
 
     // expect(txResult.errorMessage).toBe("");
   });
-  test("test transaction  create jukebox template", async () => {
+  test("test transaction create jukebox template", async () => {
     const name = "createJukeboxTemplate";
 
     // Import participating accounts
@@ -455,7 +455,7 @@ describe("Transactions", () => {
 
     // expect(txResult.errorMessage).toBe("");
   });
-  test("test transaction  create jukebox", async () => {
+  test("test transaction create jukebox", async () => {
     const name = "createJukebox";
 
     // Import participating accounts
@@ -495,7 +495,7 @@ describe("Transactions", () => {
 
     // expect(txResult.errorMessage).toBe("");
   });
-  test("test transaction  setup account for user", async () => {
+  test("test transaction setup account for user", async () => {
     const name = "sAccount";
 
     // Import participating accounts
@@ -573,7 +573,7 @@ describe("Transactions", () => {
 
     // expect(txResult.errorMessage).toBe("");
   });
-  test("test transaction  open jukebox", async () => {
+  test("test transaction  open jukebox before open-date", async () => {
     const name = "openJukebox";
 
     // Import participating accounts
@@ -614,6 +614,48 @@ describe("Transactions", () => {
     // expect(txResult.errorMessage).toBe("");
   });
 
+  test("test transaction  open jukebox after open-date", async () => {
+    const name = "openJukebox";
+
+    // Import participating accounts
+    const Dave = await getAccountAddress("Dave");
+
+    // Set transaction signers
+    const signers = [Dave];
+
+    // Generate addressMap from import statements
+    const NonFungibleToken = await getContractAddress("NonFungibleToken");
+    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopContract = await getContractAddress("MadbopContract")
+    const addressMap = {
+      NonFungibleToken,
+      NFTContract,
+      MadbopContract,
+    };
+
+    let code = await getTransactionCode({
+      name,
+      addressMap,
+    });
+
+    // const args = [1, 1, 4, "0xf3fcd2c1a78f5eee"];
+
+    let txResult;
+    setTimeout(async () => {
+      try {
+        txResult = await sendTransaction({
+          code,
+          signers,
+          // args,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }, 180000)
+    console.log("tx Result", txResult);
+
+    // expect(txResult.errorMessage).toBe("");
+  });
 
 
 })
