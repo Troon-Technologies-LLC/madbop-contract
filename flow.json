@@ -64,14 +64,22 @@
       "address": "0xe9c0c532df97e099",
       "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
     },
+    "madbop-account2": {
+      "address": "0x7108ffbc084287e4",
+      "key": "ffc5ef1b6cb67e1bd27a28314f3439f8fc68cd2cad9cf381fc9c6509a5f5a75d"
+    },
     "blocto-account": {
       "address": "0xf3e107721f7302e7",
       "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
+    },
+    "blocto-account2": {
+      "address": "0x77322c05a4b12b74",
+      "key": "ffc5ef1b6cb67e1bd27a28314f3439f8fc68cd2cad9cf381fc9c6509a5f5a75d"
     }
   },
   "deployments": {
     "testnet": {
-      "madbop-account": ["MadbopContract"]
+      "madbop-account2": ["MadbopContract"]
     }
   }
 }

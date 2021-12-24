@@ -1,4 +1,4 @@
-import MadbopContract from  0xe9c0c532df97e099
+import MadbopContract from  0x7108ffbc084287e4
 
 transaction(){
     let adminRef: &MadbopContract.Jukebox
@@ -11,7 +11,7 @@ transaction(){
 
     execute{
 
-        self.adminRef.createJukebox(templateId: 15, openDate: 1.0)
+        self.adminRef.createJukebox(templateId: 31, openDate: 1.0)
 
         log("jukebox created")
 

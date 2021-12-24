@@ -11,7 +11,7 @@ transaction() {
             (/private/NFTMethodsCapability)
             .borrow() ?? 
             panic("could not borrow a reference to the NFTMethodsCapability interface")
-            let nftTemplateIds : [AnyStruct] = [14]
+            let nftTemplateIds : [AnyStruct] = [30]
 
         let immutableData : {String: AnyStruct} = {
             "image" : "https://troontechnologies.com",
@@ -23,7 +23,7 @@ transaction() {
             "artistDescription": "irfan is a music artist",
             "nftTemplates": nftTemplateIds      
         }
-        actorResource.createTemplate(brandId: 4, schemaId: 5, maxSupply: 100, immutableData: immutableData)
+        actorResource.createTemplate(brandId: 5, schemaId: 7, maxSupply: 100, immutableData: immutableData)
         log("Template created")
     }
 }

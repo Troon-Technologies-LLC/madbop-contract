@@ -18,7 +18,7 @@ transaction() {
             "about":  "this is the fourth music nft",
             "nftCover": "https://troontechnologies.com"       
         }
-        actorResource.createTemplate(brandId: 4, schemaId: 4, maxSupply: 100, immutableData: immutableData)
+        actorResource.createTemplate(brandId: 5, schemaId: 6, maxSupply: 100, immutableData: immutableData)
         log("Template created")
     }
 }

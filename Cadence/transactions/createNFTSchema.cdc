@@ -19,7 +19,7 @@ transaction (){
             "nftCover":  NFTContract.SchemaType.String
             }
 
-            actorResource.createSchema(schemaName: "nft-series", format: format, author: 0xf3fcd2c1a78f5eee)
+            actorResource.createSchema(schemaName: "nft-series", format: format, author: 0x7108ffbc084287e4)
             log("schema created")
       }
 }
