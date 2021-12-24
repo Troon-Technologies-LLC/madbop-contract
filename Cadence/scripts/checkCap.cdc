@@ -2,7 +2,7 @@ import NFTContract from "./../contracts/NFTContract.cdc"
 import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
 
 pub fun main():Bool{
-    let account = getAccount(0xf3e107721f7302e7)
+    let account = getAccount(0x77322c05a4b12b74)
     let cap = account.getCapability(NFTContract.CollectionPublicPath)
             .borrow<&{NonFungibleToken.CollectionPublic}>()
             

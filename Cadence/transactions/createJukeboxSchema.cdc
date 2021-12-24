@@ -23,7 +23,7 @@ transaction (){
                   "nftTemplates":  NFTContract.SchemaType.Array
             }
 
-            actorResource.createSchema(schemaName: "jukebox-series-", format: format, author: 0xf3fcd2c1a78f5eee)
+            actorResource.createSchema(schemaName: "jukebox-series-", format: format, author: 0x7108ffbc084287e4)
             log("schema created")
       }
 }

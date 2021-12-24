@@ -69,6 +69,8 @@ pub contract MadbopContract {
             //Template must be the Jukebox
             assert(MadbopContract.madbopData.jukeboxSchema.contains(templateData.schemaId), message: "Template is not a Jukebox")
 
+            assert(openDate >= getCurrentBlock().timestamp, message: "open date must be greater than current date")
+            
             //Check all templates under the jukexbox are created or not
             var allNftTemplateExists =  true;
             let allIds  = templateData.immutableData["nftTemplates"]! as! [AnyStruct]
@@ -113,14 +115,14 @@ pub contract MadbopContract {
             assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!=nil, message: "Jukebox is not regiestered") 
 
             //Check if current date is greater or equal than opendate 
-
-            //MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!.openDate >= getCurrentBlock().timestamp
+            assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!.openDate <= getCurrentBlock().timestamp, message: "open date must be greater than current date")
+            
 
             let allIds  = jukeboxTemplateData.immutableData["nftTemplates"]! as! [AnyStruct]
             for tempID in allIds {
                     MadbopContract.adminRef.borrow()!.mintNFT(templateId: UInt64(tempID as! Int), account: receiptAddress)
-                }             
-               //will add an if condition
+            }                       
+            //will add an if condition
             emit  JukeboxOpened(nftId:jukeboxNFT.id,receiptAddress:self.owner?.address)
             destroy jukeboxNFT
         }
@@ -152,11 +154,11 @@ pub contract MadbopContract {
             <&{NFTContract.NFTMethodsCapability}>(/private/NFTMethodsCapability)
 
         self.adminRef = adminPrivateCap
-     
+
         self.JukeboxStoragePath = /storage/Jukebox
         self.JukeboxPublicPath  = /public/Jukebox
         
-        self.account.save<@Jukebox>(<- create Jukebox(), to: self.JukeboxStoragePath)
+        self.account.save(<- create Jukebox(), to: self.JukeboxStoragePath)
         self.account.link<&{JukeboxPublic}>(self.JukeboxPublicPath, target:self.JukeboxStoragePath)
     }
 
