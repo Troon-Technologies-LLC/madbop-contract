@@ -40,7 +40,7 @@ For more depth details use link [see Documentation](Docs/Technical_Document.md)
 ## Directory Structure of Project
 [see Documentation](Docs/Directory_Structure.md)
 
-## Technical Documentation of NFTContract(For more technical details please use this link)
+## Technical Documentation of Madbop Contract
 [see Documentation](Docs/Technical_Document.md)
 
 
