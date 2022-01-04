@@ -14,6 +14,8 @@ Schemas are used to define a data structure of NFT. Schema is like an interface 
 - Fix64
 - Bool  
 - Address
+- Array
+- Any
 
 ## Template
 Templates are blueprints of NFTs. For creating NFTs, we use Templates as defined schemas. Flow Blockchains are storing metadata offchain but only we are creating a structure where we can store metadata onchain.
