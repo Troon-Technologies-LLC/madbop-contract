@@ -14,7 +14,7 @@ transaction() {
 
         // link the UnlockedCapability in private storage
         signer.link<&{NFTContract.NFTMethodsCapability}>(
-            /private/NFTMethodsCapability,
+            NFTContract.NFTMethodsCapabilityPrivatePath,
             target: NFTContract.AdminResourceStoragePath
         )
 
@@ -25,5 +25,5 @@ transaction() {
         // create a public capability for the Collection
         signer.link<&{NonFungibleToken.CollectionPublic}>(NFTContract.CollectionPublicPath, target:NFTContract.CollectionStoragePath)
         log("Capability created")
-      }
+    }
 }

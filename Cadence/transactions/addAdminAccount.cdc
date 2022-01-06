@@ -18,8 +18,8 @@ transaction() {
         // this will be the signer of this transaction
         //
         let specialCapability = signer.getCapability
-            <&{NFTContract.SpecialCapability}>
-            (NFTContract.SpecialCapabilityPrivatePath) 
+            <&{NFTContract.NFTMethodsCapability}>
+            (NFTContract.NFTMethodsCapabilityPrivatePath) 
 
         // if the special capability is valid...
         if specialCapability.check() {

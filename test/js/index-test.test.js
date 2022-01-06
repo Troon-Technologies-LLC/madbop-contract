@@ -478,15 +478,15 @@ describe("Transactions", () => {
       name,
       addressMap,
     });
-
-    // const args = [1, 1, 4, "0xf3fcd2c1a78f5eee"];
+    var currentTimeInSeconds = Math.floor(Date.now() / 1000) + 0.0; //unix timestamp in seconds
+    const args = [2, currentTimeInSeconds];
 
     let txResult;
     try {
       txResult = await sendTransaction({
         code,
         signers,
-        // args,
+        args,
       });
     } catch (e) {
       console.log(e);
@@ -611,50 +611,7 @@ describe("Transactions", () => {
     }
     console.log("tx Result", txResult);
 
-    // expect(txResult.errorMessage).toBe("");
-  });
-
-  test("test transaction  open jukebox after open-date", async () => {
-    const name = "openJukebox";
-
-    // Import participating accounts
-    const Dave = await getAccountAddress("Dave");
-
-    // Set transaction signers
-    const signers = [Dave];
-
-    // Generate addressMap from import statements
-    const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
-    const MadbopContract = await getContractAddress("MadbopContract")
-    const addressMap = {
-      NonFungibleToken,
-      NFTContract,
-      MadbopContract,
-    };
-
-    let code = await getTransactionCode({
-      name,
-      addressMap,
-    });
-
-    // const args = [1, 1, 4, "0xf3fcd2c1a78f5eee"];
-
-    let txResult;
-    setTimeout(async () => {
-      try {
-        txResult = await sendTransaction({
-          code,
-          signers,
-          // args,
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    }, 180000)
-    console.log("tx Result", txResult);
-
-    // expect(txResult.errorMessage).toBe("");
+    expect(txResult[0].errorMessage).toBe("");
   });
 
 

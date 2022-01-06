@@ -11,7 +11,6 @@ transaction (){
 
         actorResource.createNewBrand(
         brandName: "Madbop ",
-        author: 0xf3fcd2c1a78f5eee,
         data: {
             "name":"Madbop ",
             "description":"WE BUILD DIGITAL SOLUTIONS THAT ADVANCE,IGNITE,AND EVOLVE YOUR BUSINESS",

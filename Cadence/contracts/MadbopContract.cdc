@@ -2,19 +2,25 @@ import NFTContract from "./NFTContract.cdc"
 import NonFungibleToken from "./NonFungibleToken.cdc"
 pub contract MadbopContract {
 
-
+    //event for madbop data initalization
     pub event MadbopDataInitialized(brandId:UInt64,jukeboxSchema:[UInt64], nftSchema :[UInt64])
+    //event when madbop data is updated
     pub event MadbopDataUpdated(brandId:UInt64,jukeboxSchema:[UInt64], nftSchema :[UInt64])
+    //event when a jukebox is created
     pub event JukeboxCreated(templateId:UInt64, openDate:UFix64)
+    //event when a jukebox is opened
     pub event JukeboxOpened(nftId:UInt64,receiptAddress:Address?)
 
-
+    //path for jukebox storage
     pub let JukeboxStoragePath : StoragePath
+    //path for jukebox public
     pub let JukeboxPublicPath : PublicPath
-
+    
+    //dictionary to store Jukebox data
     access(self) var allJukeboxes :{UInt64:JukeboxData}
+    //dictionary to store madbop data
     access(self) var madbopData   : MadbopData
-
+    // capability of NFTContract of NFTMethods to call the mint function on this capability
     access(contract) let adminRef : Capability<&{NFTContract.NFTMethodsCapability}>
 
 
@@ -48,11 +54,11 @@ pub contract MadbopContract {
     }
 
     pub resource interface JukeboxPublic{
-    pub fun openJukebox(jukeboxNFT:@NonFungibleToken.NFT, receiptAddress:Address)
+        //open jukebox function making it public to call by other users
+        pub fun openJukebox(jukeboxNFT:@NonFungibleToken.NFT, receiptAddress:Address)
     }
 
     pub resource Jukebox:JukeboxPublic {
-
         pub fun createJukebox(templateId:UInt64, openDate:UFix64){
             pre {
                 templateId !=nil: "template id must not be null"
@@ -89,7 +95,8 @@ pub contract MadbopContract {
             //Call event            
             emit JukeboxCreated(templateId:templateId, openDate:openDate)
         }
-
+        //update madbop data function will be updated when a new user create a new brand with its own data
+        //and pass new user details
         pub fun updateMadbopData(brandId:UInt64,jukeboxSchema:[UInt64],nftSchema:[UInt64]){
             pre {
                 brandId!=nil:"brand id must not be null"
@@ -102,7 +109,8 @@ pub contract MadbopContract {
             emit MadbopDataUpdated(brandId:brandId,jukeboxSchema:jukeboxSchema, nftSchema :nftSchema)
 
         }
-
+        //open jukebox function called by user to open specific jukebox to mint all the nfts in and transfer it to
+        //the user address
         pub fun openJukebox(jukeboxNFT:@NonFungibleToken.NFT, receiptAddress:Address){
             pre {
                 jukeboxNFT !=nil : "jukebox nft must not be null"
@@ -147,8 +155,8 @@ pub contract MadbopContract {
 
     init(){
         self.allJukeboxes = {}
-        self.madbopData = MadbopData(brandId:1, jukeboxSchema:[], nftSchema:[])
-        emit MadbopDataInitialized(brandId:1,jukeboxSchema:[], nftSchema :[])
+        self.madbopData = MadbopData(brandId:0, jukeboxSchema:[], nftSchema:[])
+        emit MadbopDataInitialized(brandId:0,jukeboxSchema:[], nftSchema :[])
         
         var adminPrivateCap =  self.account.getCapability
             <&{NFTContract.NFTMethodsCapability}>(/private/NFTMethodsCapability)
