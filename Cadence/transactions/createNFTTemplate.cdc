@@ -1,6 +1,6 @@
 import NFTContract from "./../contracts/NFTContract.cdc"
 import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
-transaction() {
+transaction(brandId:UInt64, schemaId:UInt64, maxSupply:UInt64) {
 
      prepare(acct: AuthAccount) {
 
@@ -18,7 +18,7 @@ transaction() {
             "about":  "this is the fourth music nft",
             "nftCover": "https://troontechnologies.com"       
         }
-        actorResource.createTemplate(brandId: 1, schemaId: 1, maxSupply: 100, immutableData: immutableData)
+        actorResource.createTemplate(brandId: brandId, schemaId: schemaId, maxSupply: maxSupply, immutableData: immutableData)
         log("Template created")
     }
 }

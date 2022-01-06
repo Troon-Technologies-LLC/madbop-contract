@@ -1,7 +1,7 @@
 import NFTContract from "./../contracts/NFTContract.cdc"
 import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
 
-transaction (){
+transaction (schemaName:String){
 
       prepare(acct: AuthAccount) {
 
@@ -23,7 +23,7 @@ transaction (){
                   "nftTemplates":  NFTContract.SchemaType.Array
             }
 
-            actorResource.createSchema(schemaName: "jukebox-series-", format: format, author: 0xf3fcd2c1a78f5eee)
+            actorResource.createSchema(schemaName: schemaName, format: format)
             log("schema created")
       }
 }

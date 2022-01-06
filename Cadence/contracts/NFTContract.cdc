@@ -207,9 +207,9 @@ pub contract NFTContract : NonFungibleToken {
     }
 
     pub resource interface NFTMethodsCapability {
-        pub fun createNewBrand(brandName:String, author: Address, data:{String:String})
+        pub fun createNewBrand(brandName:String, data:{String:String})
         pub fun updateBrandData(brandId:UInt64, data:{String:String})
-        pub fun createSchema(schemaName : String , format:{String:SchemaType}, author:Address)
+        pub fun createSchema(schemaName : String , format:{String:SchemaType})
         pub fun createTemplate(brandId:UInt64, schemaId:UInt64, maxSupply:UInt64,  immutableData: {String:AnyStruct})
         pub fun mintNFT(templateId:UInt64, account:Address)
     }
@@ -307,16 +307,16 @@ pub contract NFTContract : NonFungibleToken {
 
         }
 
-        pub fun createNewBrand(brandName:String, author: Address, data:{String:String}){
+        pub fun createNewBrand(brandName:String, data:{String:String}){
             pre {
                 // the transaction will instantly revert if 
                 // the capability has not been added
                 self.capability != nil: "I don't have the special capability :("
             }
-            let newBrand = Brand(brandName: brandName, author: author, data: data)
+            let newBrand = Brand(brandName: brandName, author: self.owner?.address!, data: data)
             NFTContract.allBrands[NFTContract.lastIssuedBrandId] = newBrand
             self.ownedBrands[NFTContract.lastIssuedBrandId] = newBrand
-            emit BrandCreated(brandId:NFTContract.lastIssuedBrandId ,brandName:brandName, author:author, data:data)
+            emit BrandCreated(brandId:NFTContract.lastIssuedBrandId ,brandName:brandName, author:self.owner?.address!, data:data)
             NFTContract.lastIssuedBrandId = NFTContract.lastIssuedBrandId + 1          
         
         }
@@ -329,20 +329,23 @@ pub contract NFTContract : NonFungibleToken {
                 NFTContract.allBrands[brandId] != nil:"brand Id does not exists"   
             }
             let oldBrand = NFTContract.allBrands[brandId]
+            if self.owner?.address! != oldBrand!.author {
+                panic("No permission to update others brand")
+            }
             NFTContract.allBrands[brandId]!.update(data:data)  
             emit BrandUpdated(brandId:brandId ,brandName:oldBrand!.brandName, author:oldBrand!.author, data:data)
         }
 
-        pub fun createSchema(schemaName : String , format:{String:SchemaType}, author:Address){
+        pub fun createSchema(schemaName : String , format:{String:SchemaType}){
             pre {
                 // the transaction will instantly revert if 
                 // the capability has not been added
                 self.capability != nil: "I don't have the special capability :("
             }
-            let newSchema = Schema(schemaName: schemaName, author:author, format:format)
+            let newSchema = Schema(schemaName: schemaName, author:self.owner?.address!, format:format)
             NFTContract.allSchemas[NFTContract.lastIssuedSchemaId] = newSchema
             self.ownedSchemas[NFTContract.lastIssuedSchemaId] = newSchema
-            emit SchemaCreated(schemaId:NFTContract.lastIssuedSchemaId, schemaName:schemaName, author:author)
+            emit SchemaCreated(schemaId:NFTContract.lastIssuedSchemaId, schemaName:schemaName, author: self.owner?.address!)
             NFTContract.lastIssuedSchemaId= NFTContract.lastIssuedSchemaId + 1
         }
 

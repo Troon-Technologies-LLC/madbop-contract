@@ -48,7 +48,9 @@ pub contract MadbopContract {
     }
 
     pub resource interface JukeboxPublic{
-    pub fun openJukebox(jukeboxNFT:@NonFungibleToken.NFT, receiptAddress:Address)
+        
+        pub fun openJukebox(jukeboxNFT:@NonFungibleToken.NFT, receiptAddress:Address)
+
     }
 
     pub resource Jukebox:JukeboxPublic {
