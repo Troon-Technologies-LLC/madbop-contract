@@ -1,11 +1,11 @@
 import NFTContract from "./../contracts/NFTContract.cdc"
 import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
 
-transaction() {
+transaction(Admin: Address) {
     prepare(signer: AuthAccount) {
 
         // get the public account object for the Admin
-        let TemplateAdminAccount = getAccount(0xf3fcd2c1a78f5eee)
+        let TemplateAdminAccount = getAccount(Admin)
 
         // get the public capability from the Admin's public storage
         let TemplateAdminResource = TemplateAdminAccount.getCapability

@@ -1,7 +1,7 @@
 import MadbopContract from  "./../contracts/MadbopContract.cdc"
 import NFTContract from "./../contracts/NFTContract.cdc"
 import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
-transaction(){
+transaction(adminAddress:Address, withdrawID:UInt64, receiptAddress:Address){
     prepare(acct: AuthAccount) {
         let account = getAccount(0xf3fcd2c1a78f5eee)
         let adminRef = account
