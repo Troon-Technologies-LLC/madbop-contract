@@ -109,7 +109,7 @@ describe("Deployment", () => {
 });
 
 describe("Transactions", () => {
-  await test("test transaction setup admin Account", async () => {
+  test("test transaction setup admin Account", async () => {
     const name = "setupAdminAccount";
 
     // Import participating accounts
@@ -146,7 +146,7 @@ describe("Transactions", () => {
 
     expect(txResult[0].errorMessage).toBe("");
   });
-  await test("test transaction add admin Account", async () => {
+  test("test transaction add admin Account", async () => {
     const name = "addAdminAccount";
 
     // Import participating accounts
@@ -187,7 +187,7 @@ describe("Transactions", () => {
     expect(txResult[0].errorMessage).toBe("");
   });
 
-  await test("test transaction create brand", async () => {
+  test("test transaction create brand", async () => {
     const name = "createBrand";
 
     // Import participating accounts
@@ -232,7 +232,7 @@ describe("Transactions", () => {
     expect(txResult[0].errorMessage).toBe("");
   });
 
-  await test("test transaction create nft Schema", async () => {
+  test("test transaction create nft Schema", async () => {
     const name = "createNFTSchema";
 
     // Import participating accounts
@@ -271,7 +271,7 @@ describe("Transactions", () => {
 
     expect(txResult[0].errorMessage).toBe("");
   });
-  await test("test transaction create jukebox schema", async () => {
+  test("test transaction create jukebox schema", async () => {
     const name = "createJukeboxSchema";
 
     // Import participating accounts
@@ -310,7 +310,7 @@ describe("Transactions", () => {
 
     expect(txResult[0].errorMessage).toBe("");
   });
-  await test("test transaction add madbop data", async () => {
+  test("test transaction add madbop data", async () => {
     const name = "addMadbopData";
 
     // Import participating accounts
@@ -351,7 +351,7 @@ describe("Transactions", () => {
     expect(txResult[0].errorMessage).toBe("");
   });
 
-  await test("test transaction create nft template", async () => {
+  test("test transaction create nft template", async () => {
     const name = "createNFTTemplate";
 
     // Import participating accounts
@@ -391,7 +391,7 @@ describe("Transactions", () => {
 
     expect(txResult[0].status).toBe(4);
   });
-  await test("test transaction create jukebox template", async () => {
+  test("test transaction create jukebox template", async () => {
     const name = "createJukeboxTemplate";
 
     // Import participating accounts
@@ -431,7 +431,7 @@ describe("Transactions", () => {
 
     expect(txResult[0].errorMessage).toBe("");
   });
-  await test("test transaction create jukebox", async () => {
+  test("test transaction create jukebox", async () => {
     const name = "createJukebox";
 
     // Import participating accounts
@@ -474,7 +474,7 @@ describe("Transactions", () => {
 
     expect(txResult[0].errorMessage).toBe("");
   });
-  await test("test transaction setup account for user", async () => {
+  test("test transaction setup account for user", async () => {
     const name = "setupAccount";
 
     // Import participating accounts
@@ -512,7 +512,7 @@ describe("Transactions", () => {
     expect(txResult[0].errorMessage).toBe("");
   });
 
-  await test("test transaction  mint jukebox template", async () => {
+  test("test transaction  mint jukebox template", async () => {
     const name = "mintNFT";
 
     // Import participating accounts
@@ -553,7 +553,7 @@ describe("Transactions", () => {
     expect(txResult[0].errorMessage).toBe("");
   });
 
-  await test("test transaction  open jukebox before open-date", async () => {
+  test("test transaction  open jukebox before open-date", async () => {
     const name = "openJukebox";
 
     // Import participating accounts
@@ -595,7 +595,7 @@ describe("Transactions", () => {
     expect(txResult[0].errorMessage).toBe("");
   });
 
-  await test("test transaction  open jukebox after open-date", async () => {
+  test("test transaction  open jukebox after open-date", async () => {
     const name = "openJukebox";
 
     // Import participating accounts
@@ -631,11 +631,11 @@ describe("Transactions", () => {
           signers,
           args,
         });
-        console.log("tx Resultsadadadadadad", txResult);
+        // console.log("tx Results", txResult);
       } catch (e) {
         console.log(e);
       }
-    }, 180000)
+    }, 30000)
 
 
     //expect(txResult[0].errorMessage).toBe("");

@@ -159,12 +159,12 @@ pub contract MadbopContract {
         emit MadbopDataInitialized(brandId:0,jukeboxSchema:[], nftSchema :[])
         
         var adminPrivateCap =  self.account.getCapability
-            <&{NFTContract.NFTMethodsCapability}>(/private/NFTMethodsCapability)
+            <&{NFTContract.NFTMethodsCapability}>(NFTContract.NFTMethodsCapabilityPrivatePath)
 
         self.adminRef = adminPrivateCap
 
-        self.JukeboxStoragePath = /storage/Jukebox
-        self.JukeboxPublicPath  = /public/Jukebox
+        self.JukeboxStoragePath = /storage/MadbopJukebox
+        self.JukeboxPublicPath  = /public/MadbopJukebox
         
         self.account.save(<- create Jukebox(), to: self.JukeboxStoragePath)
         self.account.link<&{JukeboxPublic}>(self.JukeboxPublicPath, target:self.JukeboxStoragePath)

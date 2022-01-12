@@ -8,7 +8,7 @@ transaction(brandId:UInt64, schemaId:UInt64, maxSupply:UInt64) {
 
         let actorResource = acct.getCapability
             <&{NFTContract.NFTMethodsCapability}>
-            (/private/NFTMethodsCapability)
+            (NFTContract.NFTMethodsCapabilityPrivatePath)
             .borrow() ?? 
             panic("could not borrow a reference to the NFTMethodsCapability interface")
             let nftTemplateIds : [AnyStruct] = [1]
