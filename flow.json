@@ -7,7 +7,7 @@
   },
   "contracts": {
     "NonFungibleToken": "./Cadence/contracts/NonFungibleToken.cdc",
-    "NFTContract": "./Cadence/contracts/NFTContract.cdc",
+    "NFTContractV01": "./Cadence/contracts/NFTContractV01.cdc",
     "MadbopContract": "./Cadence/contracts/MadbopContract.cdc"
   },
   "networks": {
@@ -20,7 +20,7 @@
       "address": "f8d6e0586b0a20c7",
       "key": "df5afc9179a82baadec14ad3e3bd455627de06067242ff51c30a5667d7de638e"
     },
-    "emulator-NFTContract": {
+    "emulator-NFTContractV01": {
       "address": "0x01cf0e2f2f715450",
       "key": {
         "type": "hex",
@@ -56,7 +56,7 @@
         "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
       }
     },
-    "NFTContract-account": {
+    "NFTContractV01-account": {
       "address": "0xc3efbc9926eb00eb",
       "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
     },

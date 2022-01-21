@@ -2,15 +2,15 @@
 
 The directories here are organized into contracts, scripts, and transactions.
 
-Contracts contain the source code for the NFTContract and Nowwhere that are deployed to Flow.
+Contracts contain the source code for the NFTContractV01 and Nowwhere that are deployed to Flow.
 
 Scripts contain read-only transactions to get information about
-the state of someones Collection or about the state of the NFTcontract and Nowwhere.
+the state of someones Collection or about the state of the NFTContractV01 and Nowwhere.
 
 Transactions contain the transactions that various users can use
 to perform actions in the smart contract like creating Collection, Schema, Templates and Mint Templates.
 
- - `Cadence/contracts/` : Where the NFTContract and Madbop smart contracts live.
+ - `Cadence/contracts/` : Where the NFTContractV01 and Madbop smart contracts live.
  - `Cadence/transactions/` : This directory contains all the transactions and scripts
  that are associated with these smart contracts.
  - `Cadence/scripts/`  : This contains all the read-only Cadence scripts 

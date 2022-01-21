@@ -1,4 +1,4 @@
-import NFTContract from "./../contracts/NFTContract.cdc"
+import NFTContractV01 from "./../contracts/NFTContractV01.cdc"
 import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
 //        brandName: "Madbop ",
 //        author: 0xf3fcd2c1a78f5eee,
@@ -11,8 +11,8 @@ transaction (brandName:String, data:{String:String}){
   
     prepare(acct: AuthAccount) {
         let actorResource = acct.getCapability
-            <&{NFTContract.NFTMethodsCapability}>
-            (NFTContract.NFTMethodsCapabilityPrivatePath)
+            <&{NFTContractV01.NFTMethodsCapability}>
+            (NFTContractV01.NFTMethodsCapabilityPrivatePath)
             .borrow() ?? 
             panic("could not borrow a reference to the NFTMethodsCapability interface")
 
