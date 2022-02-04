@@ -1,5 +1,5 @@
 import MadbopContract from  "./../contracts/MadbopContract.cdc"
-import NFTContractV01 from "./../contracts/NFTContractV01.cdc"
+import NFTContract from "./../contracts/NFTContract.cdc"
 import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
 transaction(adminAddress:Address, withdrawID:UInt64, receiptAddress:Address){
     prepare(acct: AuthAccount) {
@@ -9,7 +9,7 @@ transaction(adminAddress:Address, withdrawID:UInt64, receiptAddress:Address){
                 .borrow()
                 ?? panic("Could not borrow admin reference")
             
-        let collectionRef =  acct.borrow<&NFTContractV01.Collection>(from: NFTContractV01.CollectionStoragePath)
+        let collectionRef =  acct.borrow<&NFTContract.Collection>(from: NFTContract.CollectionStoragePath)
         ??panic("could not borrow a reference to the the stored nft Collection")
 
         adminRef.openJukebox(jukeboxNFT : <- collectionRef.withdraw(withdrawID: 1), receiptAddress: 0xe03daebed8ca0615)  

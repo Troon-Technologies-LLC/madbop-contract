@@ -1,6 +1,6 @@
-import NFTContractV01 from "./../contracts/NFTContractV01.cdc"
+import NFTContract from "./../contracts/NFTContract.cdc"
 import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
-pub fun main(): {UInt64:NFTContractV01.Brand} {
-    return NFTContractV01.getAllBrands()
+pub fun main(): {UInt64:NFTContract.Brand} {
+    return NFTContract.getAllBrands()
 
 }
