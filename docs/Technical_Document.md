@@ -53,12 +53,19 @@ can be read from the NFTContract.
 
 ## Madbop Addresses
 
-`NFTContract.cdc`: This is the main NFTContract smart contract that defines
-the core functionality of the NFT.
+`Madbop.cdc`: This is the madbop smart contract that has the functionality of the jukebox.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
 | Testnet | `0xe9c0c532df97e099` |
+
+## NFTContract Addresses
+
+`NFTContract.cdc`: This is the main NFTContract smart contract that defines the core functionality of the NFT.
+
+| Network | Contract Address     |
+| ------- | -------------------- |
+| Testnet | `0xd4221a1979538992` |
 
 ### Deployment Contract on Emulator
 
