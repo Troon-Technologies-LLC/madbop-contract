@@ -24,28 +24,24 @@ can be read from the NFTContract.
   This event is emitted when the `NFTContract` will be initialized.
 
 - Event for Brand ->
-  `pub event BrandCreated(brandName:String)`
+  `pub event BrandCreated(brandId: UInt64, brandName: String, author: Address, data: {String:String})`
   Emitted when a new Brand will be created and added to the smart Contract.
 
 - Event for Brand Updation ->
-  `pub event BrandUpdated(brandId:UInt64, brandName:String, author:Address, data:{String:String})`
+  `pub event BrandUpdated(brandId: UInt64, brandName: String, author: Address, data: {String:String}) `
   Emitted when a Brand will be update
 
 - Event for Schema ->
-  `pub event SchemaCreated(schemaId:UInt64, schemaName:String, author:Address)`
+  `pub event SchemaCreated(schemaId: UInt64, schemaName: String, author: Address)`
   Emitted when a new Schema will be created
 
 - Event for Template ->
-  `pub event TemplateCreated(templateId:UInt64, brandId:UInt64, schemaId:UInt64, maxSupply:UInt64)`
+  `pub event TemplateCreated(templateId: UInt64, brandId: UInt64, schemaId: UInt64, maxSupply: UInt64)`
   Emitted when a new Template will be created
 
 - Event for Template Mint ->
-  `pub event NFTMinted(nftId:UInt64, templateId:UInt64, mintNumber: UInt64`
+  `pub event NFTMinted(nftId: UInt64, templateId: UInt64, mintNumber: UInt64)`
   Emitted when a Template will be Minted and save as NFT
-
-- Event for JukeBox Created ->
-  `pub event JukeboxCreated(templateId:UInt64, openDate:UFix64)`
-  Emitted when a new JukeBox is created
 
 - Event for JukeBox Created ->
   `pub event JukeboxCreated(templateId:UInt64, openDate:UFix64)`
