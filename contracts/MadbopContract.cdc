@@ -73,6 +73,7 @@ pub contract MadbopContract {
             //Check all templates under the jukexbox are created or not
             var allNftTemplateExists = true;
             let allIds = templateData.immutableData["nftTemplates"]! as! [AnyStruct]
+            assert(allIds.length <=5, message: "template ids limit exceeded")
             for tempID in allIds {
                     let nftTemplateData = NFTContract.getTemplateById(templateId: UInt64(tempID as! Int) )
                     if(nftTemplateData == nil){
@@ -115,6 +116,7 @@ pub contract MadbopContract {
             //Check if current date is greater or equal than opendate 
             assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!.openDate <= getCurrentBlock().timestamp, message: "open current date")
             let allIds = jukeboxTemplateData.immutableData["nftTemplates"]! as! [AnyStruct]
+            assert(allIds.length <=5, message: "template ids limit exceeded")
             for tempID in allIds {
                 MadbopContract.adminRef.borrow()!.mintNFT(templateId: UInt64(tempID as! Int), account: receiptAddress)
             }
