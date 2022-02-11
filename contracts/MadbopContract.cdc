@@ -22,7 +22,7 @@ pub contract MadbopContract {
     // capability of NFTContract of NFTMethods to call the mint function on this capability
     access(contract) let adminRef : Capability<&{NFTContract.NFTMethodsCapability}>
 
-    // All methods called or accessed by only the admin
+    // all methods are called or accessed by only the admin
     pub struct MadbopData {
         pub var brandId: UInt64
         access(contract) var jukeboxSchema: [UInt64]
