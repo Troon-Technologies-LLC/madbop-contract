@@ -65,7 +65,7 @@ can be read from the NFTContract.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
-| mainnet | `0x73b22c80a051e2ff` |
+| mainnet | `0x1e075b24abe6eca6` |
 
 ### Deployment Contract on Emulator
 
