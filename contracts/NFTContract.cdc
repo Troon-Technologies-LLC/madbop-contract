@@ -459,7 +459,7 @@ pub contract NFTContract: NonFungibleToken {
     //method to get template by id
     pub fun getTemplateById(templateId: UInt64): Template {
         pre {
-            NFTContract.allTemplates[templateId]!=nil: "Template id does not exist"
+            NFTContract.allTemplates[templateId] != nil: "Template id does not exist"
         }
         return NFTContract.allTemplates[templateId]!
     } 
@@ -467,7 +467,7 @@ pub contract NFTContract: NonFungibleToken {
     //method to get nft-data by id
     pub fun getNFTDataById(nftId: UInt64): NFTData {
         pre {
-            NFTContract.allNFTs[nftId]!=nil:"nft id does not exist"
+            NFTContract.allNFTs[nftId] != nil:"nft id does not exist"
         }
         return NFTContract.allNFTs[nftId]!
     }

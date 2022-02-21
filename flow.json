@@ -75,11 +75,30 @@
     "blocto-account2": {
       "address": "0x77322c05a4b12b74",
       "key": "ffc5ef1b6cb67e1bd27a28314f3439f8fc68cd2cad9cf381fc9c6509a5f5a75d"
+    },
+    "NFTContract": {
+      "address": "0x8f017dc5d6a094fe",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "1f4986695b39886996f73d8841fc088853fa2b12a2f3fb28078284a4514a3bf0"
+      }
+    },
+    "MadbopContract": {
+      "address": "0x995518f64fa49e9f",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "847f8ee6e68ccddfafaabb51571d803298d97ddfcf60fc3928a0f6b8fba04506"
+      }
     }
   },
   "deployments": {
     "testnet": {
-      "NFTContract-account": ["NFTContract"]
+      "NFTContract": ["NFTContract"],
+      "MadbopContract": ["MadbopContract"]
     }
   }
 }

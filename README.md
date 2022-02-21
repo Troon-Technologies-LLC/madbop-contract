@@ -32,13 +32,11 @@ Madbop is a Music Collection Platform; where we have different entities, roles a
 Technically, JukeBox is a struct with the following structure:
 
 ```
-    pub struct  JukeboxData {
+    pub struct JukeboxData {
         pub let templateId: UInt64
         pub let openDate: UFix64
     }
 ```
-
-For more depth details use link [see Documentation](docs/Technical_Document.md)
 
 ## ✨ Getting Started
 

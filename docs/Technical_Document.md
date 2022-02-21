@@ -5,7 +5,7 @@
 A common order of creating NFT would be
 
 - Create Admin Account with `transaction/setupAdminAccount.cdc`.
-- Owner then create that account Admin, and gives that account ability to create own Brand, Schema and Template with `transactions/AddAdminCapability`
+- Owner then create that account Admin, and gives that account ability to create own Brand, Schema and Template with `transactions/AddAdminAccount.cdc`
 - Create new Brand with `transactions/createBrand.cdc` using Admin Account.
 - Create new NFT schema with `transactions/createNFTSchema.cdc` using Admin Account.
 - Create new JukeBox Schema with `transactions/createJukeBoxSchema.cdc` using Admin Account.
@@ -57,9 +57,17 @@ can be read from the NFTContract.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
-| Testnet | `0xe9c0c532df97e099` |
+| Testnet | `0x995518f64fa49e9f` |
 
-## NFTContract Addresses
+## NFTContract Testnet Addresses
+
+`NFTContract.cdc`: This is the main NFTContract smart contract that defines the core functionality of the NFT.
+
+| Network | Contract Address     |
+| ------- | -------------------- |
+| testnet | `0x8f017dc5d6a094fe` |
+
+## NFTContract Mainnet Addresses
 
 `NFTContract.cdc`: This is the main NFTContract smart contract that defines the core functionality of the NFT.
 

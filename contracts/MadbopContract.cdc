@@ -110,7 +110,7 @@ pub contract MadbopContract {
             var jukeboxNFTdata = NFTContract.getNFTDataById(nftId: jukeboxNFT.id)
             var jukeboxTemplateData = NFTContract.getTemplateById(templateId: jukeboxNFTdata.templateID)
             // check if it is regiesterd or not
-            assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID] !=nil, message: "Jukebox is not registered") 
+            assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID] != nil, message: "Jukebox is not registered") 
             // check if current date is greater or equal than opendate 
             assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!.openDate <= getCurrentBlock().timestamp, message: "open date must be less than or equal to the current date")
             let allIds = jukeboxTemplateData.immutableData["nftTemplates"]! as! [AnyStruct]
