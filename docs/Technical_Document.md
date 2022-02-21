@@ -59,21 +59,15 @@ can be read from the NFTContract.
 | ------- | -------------------- |
 | Testnet | `0x995518f64fa49e9f` |
 
-## NFTContract Testnet Addresses
-
-`NFTContract.cdc`: This is the main NFTContract smart contract that defines the core functionality of the NFT.
-
-| Network | Contract Address     |
-| ------- | -------------------- |
-| testnet | `0x8f017dc5d6a094fe` |
-
-## NFTContract Mainnet Addresses
+## NFTContract Addresses
 
 `NFTContract.cdc`: This is the main NFTContract smart contract that defines the core functionality of the NFT.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
 | mainnet | `0x1e075b24abe6eca6` |
+| testnet | `0x8f017dc5d6a094fe` |
+
 
 ### Deployment Contract on Emulator
 
