@@ -113,7 +113,7 @@ pub contract NFTContract: NonFungibleToken {
                 maxSupply > 0 : "MaxSupply must be greater than zero"
                 immutableData != nil: "ImmutableData must not be nil"
             }
-
+            
             self.templateId = NFTContract.lastIssuedTemplateId
             self.brandId = brandId
             self.schemaId = schemaId
