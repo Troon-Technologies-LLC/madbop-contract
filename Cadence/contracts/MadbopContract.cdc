@@ -154,7 +154,10 @@ pub contract MadbopContract {
             <&{NFTContract.NFTMethodsCapability}>(/private/NFTMethodsCapability)
 
         self.adminRef = adminPrivateCap
+<<<<<<< HEAD
+=======
 
+>>>>>>> dev
         self.JukeboxStoragePath = /storage/Jukebox
         self.JukeboxPublicPath  = /public/Jukebox
         

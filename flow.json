@@ -81,5 +81,6 @@
     "testnet": {
       "madbop-account2": ["MadbopContract"]
     }
-  }
+  },
+  "deployments": {}
 }

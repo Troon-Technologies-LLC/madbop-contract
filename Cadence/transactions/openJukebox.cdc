@@ -12,7 +12,11 @@ transaction(){
         let collectionRef =  acct.borrow<&NFTContract.Collection>(from: NFTContract.CollectionStoragePath)
         ??panic("could not borrow a reference to the the stored nft Collection")
 
+<<<<<<< HEAD
+        adminRef.openJukebox(jukeboxNFT : <- collectionRef.withdraw(withdrawID: 1), receiptAddress: 0xa888f479b6525db2)  
+=======
         adminRef.openJukebox(jukeboxNFT : <- collectionRef.withdraw(withdrawID: 16), receiptAddress: 0x77322c05a4b12b74)  
+>>>>>>> dev
     }
 
 

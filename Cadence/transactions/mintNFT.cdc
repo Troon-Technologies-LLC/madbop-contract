@@ -9,7 +9,11 @@ transaction() {
         .borrow() ?? 
         panic("could not borrow a reference to the NFTMethodsCapability interface")
 
+<<<<<<< HEAD
+    actorResource.mintNFT(templateId: 2, account: 0xa888f479b6525db2)
+=======
     actorResource.mintNFT(templateId: 31, account: 0x77322c05a4b12b74)
+>>>>>>> dev
 
     }
 }
