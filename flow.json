@@ -55,15 +55,31 @@
         "signatureAlgorithm": "ECDSA_secp256k1",
         "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
       }
+    },
+    "NFTContract-account": {
+      "address": "0xc3efbc9926eb00eb",
+      "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
+    },
+    "madbop-account": {
+      "address": "0xe9c0c532df97e099",
+      "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
+    },
+    "madbop-account2": {
+      "address": "0x7108ffbc084287e4",
+      "key": "ffc5ef1b6cb67e1bd27a28314f3439f8fc68cd2cad9cf381fc9c6509a5f5a75d"
+    },
+    "blocto-account": {
+      "address": "0xf3e107721f7302e7",
+      "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
+    },
+    "blocto-account2": {
+      "address": "0x77322c05a4b12b74",
+      "key": "ffc5ef1b6cb67e1bd27a28314f3439f8fc68cd2cad9cf381fc9c6509a5f5a75d"
     }
   },
-  "madbop-account": {
-    "address": "0xa888f479b6525db2",
-    "key": {
-      "type": "hex",
-      "hashAlgorithm": "SHA3_256",
-      "signatureAlgorithm": "ECDSA_secp256k1",
-      "privateKey": "0ccc233c1b17c809b79edd136805d04d71cd7fa1615272f4dc384039d3f59f5d"
+  "deployments": {
+    "testnet": {
+      "madbop-account2": ["MadbopContract"]
     }
   },
   "deployments": {}

@@ -1,4 +1,4 @@
-import NFTContract from  0xd4221a1979538992
+import NFTContract from  0xc3efbc9926eb00eb
 import NonFungibleToken from 0x631e88ae7f1d7c20
 transaction() {
 
@@ -14,11 +14,11 @@ transaction() {
         let immutableData : {String: AnyStruct} = {
             "nftContent" : "Image",
             "contentType"  : "https://troontechnologies.com",
-            "title":"first NFT",
-            "about":  "this is the first music nft",
+            "title":"fourth NFT",
+            "about":  "this is the fourth music nft",
             "nftCover": "https://troontechnologies.com"       
         }
-        actorResource.createTemplate(brandId: 1, schemaId: 1, maxSupply: 100, immutableData: immutableData)
+        actorResource.createTemplate(brandId: 5, schemaId: 6, maxSupply: 100, immutableData: immutableData)
         log("Template created")
     }
 }

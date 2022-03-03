@@ -1,4 +1,4 @@
-import MadbopContract from  0xa888f479b6525db2
+import MadbopContract from  0x7108ffbc084287e4
 
 transaction(templateId:UInt64){
     let adminRef: &MadbopContract.Jukebox
@@ -7,7 +7,11 @@ transaction(templateId:UInt64){
         ??panic("could not borrow admin reference")
     }
     execute{
-        self.adminRef.createJukebox(templateId: templateId, openDate: 1.0)
+
+        self.adminRef.createJukebox(templateId: 31, openDate: 1.0)
+
+        log("jukebox created")
+
     }
 
 }
