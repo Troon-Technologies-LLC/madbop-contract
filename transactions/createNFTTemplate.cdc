@@ -13,10 +13,10 @@ transaction(brandId:UInt64, schemaId:UInt64, maxSupply:UInt64) {
 
         let immutableData : {String: AnyStruct} = {
             "nftContent" : "Image",
-            "contentType"  : "https://troontechnologies.com",
+            "contentType"  : "https://madbop.com",
             "title":"fourth NFT",
             "about":  "this is the fourth music nft",
-            "nftCover": "https://troontechnologies.com"       
+            "nftCover": "https://madbop.com"       
         }
         actorResource.createTemplate(brandId: brandId, schemaId: schemaId, maxSupply: maxSupply, immutableData: immutableData)
         log("Template created")

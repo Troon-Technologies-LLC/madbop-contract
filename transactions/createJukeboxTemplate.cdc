@@ -4,8 +4,6 @@ transaction(brandId:UInt64, schemaId:UInt64, maxSupply:UInt64) {
 
         prepare(acct: AuthAccount) {
         
-
-
         let actorResource = acct.getCapability
             <&{MadbopNFTs.NFTMethodsCapability}>
             (MadbopNFTs.NFTMethodsCapabilityPrivatePath)
@@ -14,7 +12,7 @@ transaction(brandId:UInt64, schemaId:UInt64, maxSupply:UInt64) {
             let nftTemplateIds : [AnyStruct] = [1]
 
         let immutableData : {String: AnyStruct} = {
-            "image" : "https://troontechnologies.com",
+            "image" : "https://madbop.com",
             "title":"First NFT",
             "startDate":  1641199919.0 as Fix64,
             "endDate":   1642299919.0 as Fix64,
