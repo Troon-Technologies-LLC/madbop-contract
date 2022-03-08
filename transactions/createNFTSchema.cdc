@@ -1,12 +1,12 @@
-import NFTContract from  0xc3efbc9926eb00eb
-import NonFungibleToken from 0x631e88ae7f1d7c20
-transaction (){
+import NFTContract from "./../contracts/NFTContract.cdc"
+import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
+transaction (schemaName:String){
 
       prepare(acct: AuthAccount) {
 
             let actorResource = acct.getCapability
                   <&{NFTContract.NFTMethodsCapability}>
-                  (/private/NFTMethodsCapability)
+                  (NFTContract.NFTMethodsCapabilityPrivatePath)
                   .borrow() ?? 
                   panic("could not borrow a reference to the NFTMethodsCapability interface")
 
@@ -19,7 +19,7 @@ transaction (){
             "nftCover":  NFTContract.SchemaType.String
             }
 
-            actorResource.createSchema(schemaName: "nft-series", format: format, author: 0x7108ffbc084287e4)
+            actorResource.createSchema(schemaName: schemaName, format: format)
             log("schema created")
       }
 }
