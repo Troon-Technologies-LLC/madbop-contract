@@ -1,4 +1,4 @@
-import MadbopContract from  "./../contracts/MadbopContract.cdc"
+import MadbopContract from  0xb5660858a796e6ba
 transaction(brandId:UInt64, jukeboxSchemaId:UInt64, nftSchemaId:UInt64){
     let adminRef: &MadbopContract.Jukebox
     prepare(acct: AuthAccount) {

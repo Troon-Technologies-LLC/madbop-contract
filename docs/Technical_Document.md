@@ -15,13 +15,13 @@ A common order of creating NFT would be
 - Open JukeBox with `transaction/openJukebox`.
 
 You can also see the scripts in `scripts` to see how information
-can be read from the NFTContract.
+can be read from the MadbopNFTs.
 
-### NFTContract and Madbop Events
+### MadbopNFTs and Madbop Events
 
 - Contract Initialized ->
   ` pub event ContractInitialized()`
-  This event is emitted when the `NFTContract` will be initialized.
+  This event is emitted when the `MadbopNFTs` will be initialized.
 
 - Event for Brand ->
   `pub event BrandCreated(brandId: UInt64, brandName: String, author: Address, data: {String:String})`
@@ -57,16 +57,16 @@ can be read from the NFTContract.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
-| Testnet | `0x995518f64fa49e9f` |
+| Testnet | `0xb5660858a796e6ba` |
 
-## NFTContract Addresses
+## MadbopNFTs Addresses
 
-`NFTContract.cdc`: This is the main NFTContract smart contract that defines the core functionality of the NFT.
+`MadbopNFTs.cdc`: This is the main MadbopNFTs smart contract that defines the core functionality of the NFT.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
 | mainnet | `0x1e075b24abe6eca6` |
-| testnet | `0x8f017dc5d6a094fe` |
+| testnet | `0xa8185ff2f21792f2` |
 
 ### Deployment Contract on Emulator
 

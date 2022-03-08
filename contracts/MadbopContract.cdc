@@ -1,5 +1,5 @@
-import NFTContract from "./NFTContract.cdc"
-import NonFungibleToken from "./NonFungibleToken.cdc"
+import MadbopNFTs from 0xa8185ff2f21792f2
+import NonFungibleToken from 0x631e88ae7f1d7c20
 
 pub contract MadbopContract {
 
@@ -19,8 +19,8 @@ pub contract MadbopContract {
     access(self) var allJukeboxes: {UInt64: JukeboxData}
     // dictionary to store madbop data
     access(self) var madbopData: MadbopData
-    // capability of NFTContract of NFTMethods to call the mint function on this capability
-    access(contract) let adminRef : Capability<&{NFTContract.NFTMethodsCapability}>
+    // capability of MadbopNFTs of NFTMethods to call the mint function on this capability
+    access(contract) let adminRef : Capability<&{MadbopNFTs.NFTMethodsCapability}>
 
     // all methods are accessed by only the admin
     pub struct MadbopData {
@@ -63,7 +63,7 @@ pub contract MadbopContract {
                 MadbopContract.allJukeboxes[templateId] == nil: "Jukebox already created with the given template id"
                 openDate > 0.0 : "Open date should be greater than zero"
             }    
-            let templateData = NFTContract.getTemplateById(templateId: templateId)
+            let templateData = MadbopNFTs.getTemplateById(templateId: templateId)
             assert(templateData != nil, message: "data for given template id does not exist")
             // brand Id of template must be Madbop brand Id
             assert(templateData.brandId == MadbopContract.madbopData.brandId, message: "Invalid Brand id")
@@ -76,7 +76,7 @@ pub contract MadbopContract {
             assert(allIds.length <= 5, message: "templates limit exceeded")
             for tempID in allIds {
                 var castedTempId = UInt64(tempID as! Int)
-                let nftTemplateData = NFTContract.getTemplateById(templateId: castedTempId)
+                let nftTemplateData = MadbopNFTs.getTemplateById(templateId: castedTempId)
                 if(nftTemplateData == nil) {
                     allNftTemplateExists = false
                     break
@@ -107,8 +107,8 @@ pub contract MadbopContract {
                 jukeboxNFT != nil : "jukebox nft must not be null"
                 receiptAddress != nil : "receipt address must not be null"
             }
-            var jukeboxNFTdata = NFTContract.getNFTDataById(nftId: jukeboxNFT.id)
-            var jukeboxTemplateData = NFTContract.getTemplateById(templateId: jukeboxNFTdata.templateID)
+            var jukeboxNFTdata = MadbopNFTs.getNFTDataById(nftId: jukeboxNFT.id)
+            var jukeboxTemplateData = MadbopNFTs.getTemplateById(templateId: jukeboxNFTdata.templateID)
             // check if it is regiesterd or not
             assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID] != nil, message: "Jukebox is not registered") 
             // check if current date is greater or equal than opendate 
@@ -149,7 +149,7 @@ pub contract MadbopContract {
         self.allJukeboxes = {}
         self.madbopData = MadbopData(brandId: 0, jukeboxSchema: [], nftSchema: [])
         var adminPrivateCap = self.account.getCapability
-            <&{NFTContract.NFTMethodsCapability}>(NFTContract.NFTMethodsCapabilityPrivatePath)
+            <&{MadbopNFTs.NFTMethodsCapability}>(MadbopNFTs.NFTMethodsCapabilityPrivatePath)
         self.adminRef = adminPrivateCap
         self.JukeboxStoragePath = /storage/MadbopJukebox
         self.JukeboxPublicPath = /public/MadbopJukebox

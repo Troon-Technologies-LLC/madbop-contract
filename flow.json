@@ -7,7 +7,7 @@
   },
   "contracts": {
     "NonFungibleToken": "./contracts/NonFungibleToken.cdc",
-    "NFTContract": "./contracts/NFTContract.cdc",
+    "MadbopNFTs": "./contracts/MadbopNFTs.cdc",
     "MadbopContract": "./contracts/MadbopContract.cdc"
   },
   "networks": {
@@ -20,7 +20,7 @@
       "address": "f8d6e0586b0a20c7",
       "key": "df5afc9179a82baadec14ad3e3bd455627de06067242ff51c30a5667d7de638e"
     },
-    "emulator-NFTContract": {
+    "emulator-MadbopNFTs": {
       "address": "0x01cf0e2f2f715450",
       "key": {
         "type": "hex",
@@ -56,7 +56,7 @@
         "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
       }
     },
-    "NFTContract-account": {
+    "MadbopNFTs-account": {
       "address": "0xc3efbc9926eb00eb",
       "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
     },
@@ -76,22 +76,22 @@
       "address": "0x77322c05a4b12b74",
       "key": "ffc5ef1b6cb67e1bd27a28314f3439f8fc68cd2cad9cf381fc9c6509a5f5a75d"
     },
-    "NFTContract": {
-      "address": "0x8f017dc5d6a094fe",
+    "MadbopNFTs": {
+      "address": "0xa8185ff2f21792f2",
       "key": {
         "type": "hex",
         "hashAlgorithm": "SHA3_256",
         "signatureAlgorithm": "ECDSA_secp256k1",
-        "privateKey": "1f4986695b39886996f73d8841fc088853fa2b12a2f3fb28078284a4514a3bf0"
+        "privateKey": "00e502b35f98f438fa585824256e1b3dde0412ff1c294c2c3ec780301080735b"
       }
     },
     "MadbopContract": {
-      "address": "0x995518f64fa49e9f",
+      "address": "0xb5660858a796e6ba",
       "key": {
         "type": "hex",
         "hashAlgorithm": "SHA3_256",
         "signatureAlgorithm": "ECDSA_secp256k1",
-        "privateKey": "847f8ee6e68ccddfafaabb51571d803298d97ddfcf60fc3928a0f6b8fba04506"
+        "privateKey": "07a16773167c191a6ec65a33f15fe85d614231d5c0b9381f31e8bc34513a2a33"
       }
     },
     "MadbopContract-Mainnet": {
@@ -117,7 +117,7 @@
   },
   "deployments": {
     "testnet": {
-      "NFTContract": ["NFTContract"],
+      "MadbopNFTs": ["MadbopNFTs"],
       "MadbopContract": ["MadbopContract"]
     }
   }
