@@ -1,5 +1,5 @@
 import path from "path"
-import { init, emulator, getAccountAddress, deployContractByName, getContractCode, getContractAddress, getTransactionCode, getScriptCode, executeScript, sendTransaction } from "flow-js-testing";
+import { init, emulator, getAccountAddress, deployContractByName, getContractAddress, getTransactionCode, getScriptCode, executeScript, sendTransaction } from "flow-js-testing";
 
 jest.setTimeout(100000);
 

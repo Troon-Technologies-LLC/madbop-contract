@@ -1,0 +1,124 @@
+{
+  "emulators": {
+    "default": {
+      "port": 3569,
+      "serviceAccount": "emulator-account"
+    }
+  },
+  "contracts": {
+    "NonFungibleToken": "./contracts/NonFungibleToken.cdc",
+    "MadbopNFTs": "./contracts/MadbopNFTs.cdc",
+    "MadbopContract": "./contracts/MadbopContract.cdc"
+  },
+  "networks": {
+    "emulator": "127.0.0.1:3569",
+    "mainnet": "access.mainnet.nodes.onflow.org:9000",
+    "testnet": "access.devnet.nodes.onflow.org:9000"
+  },
+  "accounts": {
+    "emulator-account": {
+      "address": "f8d6e0586b0a20c7",
+      "key": "df5afc9179a82baadec14ad3e3bd455627de06067242ff51c30a5667d7de638e"
+    },
+    "emulator-MadbopNFTs": {
+      "address": "0x01cf0e2f2f715450",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
+      }
+    },
+    "emulator-NonFungibleToken": {
+      "address": "0x179b6b1cb6755e31",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
+      }
+    },
+    "emulator-madbop": {
+      "address": "0x01cf0e2f2f715450",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "b58a0d6e340a3a4462df7149a6eb0cf9700769fb95e2c4dbb05d4889a0a750fe"
+      }
+    },
+    "emulator-user": {
+      "address": "0xe03daebed8ca0615",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "273c689bff47dcef83bd344ffc462a8485ebae791b7c73928010e98ffc36c0fa"
+      }
+    },
+    "MadbopNFTs-account": {
+      "address": "0xc3efbc9926eb00eb",
+      "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
+    },
+    "madbop-account": {
+      "address": "0xe9c0c532df97e099",
+      "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
+    },
+    "madbop-account2": {
+      "address": "0x7108ffbc084287e4",
+      "key": "ffc5ef1b6cb67e1bd27a28314f3439f8fc68cd2cad9cf381fc9c6509a5f5a75d"
+    },
+    "blocto-account": {
+      "address": "0xf3e107721f7302e7",
+      "key": "642d8c1318ae6380ec8a57fe7c3df6a5371ed091f3b3434ecc42a610fb1105db"
+    },
+    "blocto-account2": {
+      "address": "0x77322c05a4b12b74",
+      "key": "ffc5ef1b6cb67e1bd27a28314f3439f8fc68cd2cad9cf381fc9c6509a5f5a75d"
+    },
+    "MadbopNFTs": {
+      "address": "0xa8185ff2f21792f2",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "00e502b35f98f438fa585824256e1b3dde0412ff1c294c2c3ec780301080735b"
+      }
+    },
+    "MadbopContract": {
+      "address": "0xb5660858a796e6ba",
+      "key": {
+        "type": "hex",
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "07a16773167c191a6ec65a33f15fe85d614231d5c0b9381f31e8bc34513a2a33"
+      }
+    },
+    "MadbopContract-Mainnet": {
+      "address": "0xe8aeee7a48e71d78",
+      "key": {
+        "type": "hex",
+        "index": 3,
+        "hashAlgorithm": "SHA3_256",
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "privateKey": "b58a0d6e340a3a4462df7149a6eb0cf9700769fb95e2c4dbb05d4889a0a750fe"
+      }
+    },
+    "myuserTest-account": {
+      "address": "0xb03d30a14648546e",
+      "key": {
+        "type": "hex",
+        "index": 0,
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "hashAlgorithm": "SHA3_256",
+        "privateKey": "c48f4150e5e0988c51f2929a16c854f1c311432740a4b5069fb0e6462cab7bca"
+      }
+    }
+  },
+  "deployments": {
+    "testnet": {
+      "MadbopNFTs": ["MadbopNFTs"],
+      "MadbopContract": ["MadbopContract"]
+    }
+  }
+}
