@@ -1,5 +1,5 @@
-import NFTContract from  0xd4221a1979538992
-pub fun main(): {UInt64:NFTContract.Brand} {
-    return NFTContract.getAllBrands()
+import MadbopNFTs from 0xa8185ff2f21792f2
+pub fun main(): {UInt64:MadbopNFTs.Brand} {
+    return MadbopNFTs.getAllBrands()
 
 }

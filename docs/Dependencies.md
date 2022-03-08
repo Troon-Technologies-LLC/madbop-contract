@@ -5,5 +5,5 @@ _🛠 This project requires `flow-cli v0.31.1` or above._ See: [Flow CLI install
 ### Clone the project
 
 ```sh
-git clone https://github.com/Troon-Technologies-LLC/madbop-contract.git
+git clone https://github.com/troon-Technologies-LLC/madbop-contract.git
 ```

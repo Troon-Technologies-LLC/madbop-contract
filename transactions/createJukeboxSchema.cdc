@@ -1,26 +1,26 @@
-import NFTContract from "./../contracts/NFTContract.cdc"
-import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
+import MadbopNFTs from 0xa8185ff2f21792f2
+import NonFungibleToken from 0x631e88ae7f1d7c20
 
 transaction (schemaName:String){
 
       prepare(acct: AuthAccount) {
 
             let actorResource = acct.getCapability
-                  <&{NFTContract.NFTMethodsCapability}>
-                  (NFTContract.NFTMethodsCapabilityPrivatePath)
+                  <&{MadbopNFTs.NFTMethodsCapability}>
+                  (MadbopNFTs.NFTMethodsCapabilityPrivatePath)
                   .borrow() ?? 
                   panic("could not borrow a reference to the NFTMethodsCapability interface")
 
 
-            let format : {String: NFTContract.SchemaType} = {
-                  "image" : NFTContract.SchemaType.String,
-                  "title"  :  NFTContract.SchemaType.String,
-                  "startDate":NFTContract.SchemaType.Fix64,
-                  "endDate":  NFTContract.SchemaType.Fix64,
-                  "cost":  NFTContract.SchemaType.Fix64,
-                  "artistName":  NFTContract.SchemaType.String,
-                  "artistDescription":  NFTContract.SchemaType.String,
-                  "nftTemplates":  NFTContract.SchemaType.Array
+            let format : {String: MadbopNFTs.SchemaType} = {
+                  "image" : MadbopNFTs.SchemaType.String,
+                  "title"  :  MadbopNFTs.SchemaType.String,
+                  "startDate":MadbopNFTs.SchemaType.Fix64,
+                  "endDate":  MadbopNFTs.SchemaType.Fix64,
+                  "cost":  MadbopNFTs.SchemaType.Fix64,
+                  "artistName":  MadbopNFTs.SchemaType.String,
+                  "artistDescription":  MadbopNFTs.SchemaType.String,
+                  "nftTemplates":  MadbopNFTs.SchemaType.Array
             }
 
             actorResource.createSchema(schemaName: schemaName, format: format)

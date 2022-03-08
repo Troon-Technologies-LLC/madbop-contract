@@ -1,4 +1,4 @@
-import MadbopContract from  "./../contracts/MadbopContract.cdc"
+import MadbopContract from  0xb5660858a796e6ba
 
 transaction(templateId:UInt64,openDate:UFix64){
     let adminRef: &MadbopContract.Jukebox
