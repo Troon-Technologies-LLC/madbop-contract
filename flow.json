@@ -120,5 +120,6 @@
       "NFTContract": ["NFTContract"],
       "MadbopContract": ["MadbopContract"]
     }
-  }
+  },
+  "deployments": {}
 }
