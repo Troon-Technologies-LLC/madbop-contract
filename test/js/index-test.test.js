@@ -1,58 +1,37 @@
 import path from "path"
-import fcl from "@onflow/fcl"
-import { init, emulator, getConfigValue, set, getAccountAddress, deployContractByName, getContractCode, getContractAddress, getTransactionCode, getScriptCode, executeScript, sendTransaction } from "flow-js-testing";
+import { init, emulator, getAccountAddress, deployContractByName, getContractAddress, getTransactionCode, getScriptCode, executeScript, sendTransaction } from "flow-js-testing";
 
 jest.setTimeout(100000);
 
 beforeAll(async () => {
-  const basePath = path.resolve(__dirname, "../../Cadence");
-  // fcl.config()
-  //   .put("accessNode.api", "https://access-testnet.onflow.org")
-  const port = 8000;
+  const basePath = path.resolve(__dirname, "../..");
+  const port = 8080;
 
   await init(basePath, { port });
   await emulator.start(port);
-
 });
 
 afterAll(async () => {
-  const port = 9000;
+  const port = 8080;
   await emulator.stop(port);
 });
 
 
 describe("Replicate Playground Accounts", () => {
   test("Create Accounts", async () => {
-    // const basePath = path.resolve(__dirname, "../../Cadence");
-    // fcl.config()
-    //   .put("accessNode.api", "https://access-testnet.onflow.org")
-    // const port = 9000;
-
-    // await init(basePath, { port });
     // Playground project support 4 accounts, but nothing stops you jukeboxTemplateDatafrom creating more by following the example laid out below
     const Alice = await getAccountAddress("Alice");
     const Bob = await getAccountAddress("Bob");
     const Charlie = await getAccountAddress("Charlie");
     const Dave = await getAccountAddress("Dave");
 
-    console.log("config value = ", await getConfigValue("accessNode.api"));
-    set("accessNode.api", "testing", "networks/testnet", `access.devnet.nodes.onflow.org`)
-    console.log("config value = ", await getConfigValue("accessNode.api"));
-
     console.log(
       "Four Playground accounts were created with following addresses"
     );
-
-    // const Nasir = await getAccountAddress("0xa888f479b6525db2");
-    const Nasir = await getContractAddress("MadbopContract")
-
-
     console.log("Alice:", Alice);
     console.log("Bob:", Bob);
     console.log("Charlie:", Charlie);
     console.log("Dave:", Dave);
-    console.log("Nasir:", Nasir);
-
   });
 });
 describe("Deployment", () => {
