@@ -222,11 +222,24 @@ pub contract MadbopNFTs: NonFungibleToken {
             emit NFTDestroyed(id: self.id)
         }
     }
+    pub resource interface MadbopNFTsCollectionPublic {
+        pub fun deposit(token: @NonFungibleToken.NFT)
+        pub fun getIDs(): [UInt64]
+        pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT
+        pub fun borrowMadbopNFTs_NFT(id: UInt64): &MadbopNFTs.NFT? {
+            // If the result isn't nil, the id of the returned reference
+            // should be the same as the argument to the function
+            post {
+                (result == nil) || (result?.id == id):
+                    "Cannot borrow MadbopNFTs reference: The ID of the returned reference is incorrect"
+            }
+        }
+    }
 
     // Collection is a resource that every user who owns NFTs 
     // will store in their account to manage their NFTS
     //
-    pub resource Collection: NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic {
+    pub resource Collection: MadbopNFTsCollectionPublic, NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic {
         pub var ownedNFTs: @{UInt64: NonFungibleToken.NFT}
 
         pub fun withdraw(withdrawID: UInt64): @NonFungibleToken.NFT {
@@ -251,8 +264,17 @@ pub contract MadbopNFTs: NonFungibleToken {
         }
 
         pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT {
-            emit NFTBorrowed(id:id)
+
             return &self.ownedNFTs[id] as &NonFungibleToken.NFT
+        }
+        pub fun borrowMadbopNFTs_NFT(id: UInt64): &MadbopNFTs.NFT? {
+            if self.ownedNFTs[id] != nil {
+                let ref = &self.ownedNFTs[id] as auth &NonFungibleToken.NFT
+                return ref as! &MadbopNFTs.NFT
+            }
+            else{
+                return nil
+            }
         }
 
         init() {
