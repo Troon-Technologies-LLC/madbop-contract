@@ -17,13 +17,13 @@ pub fun main() : {UInt64: AnyStruct}{
 
 
     for nftId in nftIds {
-        var nftData = MadbopNFTs.getNFTDataById(nftId: nftId)
-        var templateDataById =  MadbopNFTs.getTemplateById(templateId: nftData.templateID)
+        var MadbopNFTData = MadbopNFTs.getMadbopNFTDataById(nftId: nftId)
+        var templateDataById =  MadbopNFTs.getTemplateById(templateId: MadbopNFTData.templateID)
 
         var nftMetaData : {String:AnyStruct} = {}
 
-        nftMetaData["templateId"] =nftData.templateID;
-        nftMetaData["mintNumber"] =nftData.mintNumber;
+        nftMetaData["templateId"] =MadbopNFTData.templateID;
+        nftMetaData["mintNumber"] =MadbopNFTData.mintNumber;
         nftMetaData["templateData"] = templateDataById;
 
 
