@@ -23,7 +23,7 @@ transaction() {
         signer.save( <- collection, to:MadbopNFTs.CollectionStoragePath)
         log("Collection created for account".concat(signer.address.toString()))
         // create a public capability for the Collection
-        signer.link<&{NonFungibleToken.CollectionPublic}>(MadbopNFTs.CollectionPublicPath, target:MadbopNFTs.CollectionStoragePath)
+        signer.link<&{MadbopNFTs.MadbopNFTsCollectionPublic}>(MadbopNFTs.CollectionPublicPath, target:MadbopNFTs.CollectionStoragePath)
         log("Capability created")
     }
 }

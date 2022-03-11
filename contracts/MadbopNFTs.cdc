@@ -422,7 +422,7 @@ pub contract MadbopNFTs: NonFungibleToken {
             let receiptAccount = getAccount(account)
             let recipientCollection = receiptAccount
                 .getCapability(MadbopNFTs.CollectionPublicPath)
-                .borrow<&{NonFungibleToken.CollectionPublic}>()
+                .borrow<&{MadbopNFTs.MadbopNFTsCollectionPublic}>()
                 ?? panic("Could not get receiver reference to the NFT Collection")
             var newNFT: @NFT <- create NFT(templateID: templateId, mintNumber: MadbopNFTs.allTemplates[templateId]!.incrementIssuedSupply())
             recipientCollection.deposit(token: <-newNFT)

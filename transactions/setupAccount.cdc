@@ -8,7 +8,7 @@ transaction {
         acct.save( <- collection, to:MadbopNFTs.CollectionStoragePath)
         log("Collection created for account".concat(acct.address.toString()))
         // create a public capability for the Collection
-        acct.link<&{NonFungibleToken.CollectionPublic}>(MadbopNFTs.CollectionPublicPath, target:MadbopNFTs.CollectionStoragePath)
+        acct.link<&{MadbopNFTs.MadbopNFTsCollectionPublic}>(MadbopNFTs.CollectionPublicPath, target:MadbopNFTs.CollectionStoragePath)
         log("Capability created")
 
     }
