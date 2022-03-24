@@ -1,14 +1,14 @@
 ## Overview
 
-## Summary of NFTContract
+## Summary of MadbopNFTs
 
-NFTContract is a Non Fungible Token (NFT) standard for Flow blockchain.
+MadbopNFTs is a Non Fungible Token (NFT) standard for Flow blockchain.
 It offers a powerful set while keeping unnecessary complexity to a minimum and focus on efficiency.
 Our Contract consists of different parts like Brand, Schema, Templates and NFTs, which serve different purposes and often reference each other.
 
 ## Brand
 
-A brand is an intangible marketing or business concept that helps people identify a company, product, or individual. People often confuse brands with things like logos, slogans, or other recognizable marks. Brand is a symbol of organization that represent parent company. Organizations can create their own Brands in FLOW Blockchain using NFTContract. We have set of restrictions on flow Accounts. In order to create a brand you need to be whitelisted(Approval of Super Admin).
+A brand is an intangible marketing or business concept that helps people identify a company, product, or individual. People often confuse brands with things like logos, slogans, or other recognizable marks. Brand is a symbol of organization that represent parent company. Organizations can create their own Brands in FLOW Blockchain using MadbopNFTs. We have set of restrictions on flow Accounts. In order to create a brand you need to be whitelisted(Approval of Super Admin).
 
 ### Schema
 
@@ -32,13 +32,11 @@ Madbop is a Music Collection Platform; where we have different entities, roles a
 Technically, JukeBox is a struct with the following structure:
 
 ```
-    pub struct  JukeboxData {
+    pub struct JukeboxData {
         pub let templateId: UInt64
         pub let openDate: UFix64
     }
 ```
-
-For more depth details use link [see Documentation](docs/Technical_Document.md)
 
 ## ✨ Getting Started
 

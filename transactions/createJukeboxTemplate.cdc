@@ -1,20 +1,18 @@
-import NFTContract from "./../contracts/NFTContract.cdc"
-import NonFungibleToken from "./../contracts/NonFungibleToken.cdc"
+import MadbopNFTs from 0xa8185ff2f21792f2
+import NonFungibleToken from 0x631e88ae7f1d7c20
 transaction(brandId:UInt64, schemaId:UInt64, maxSupply:UInt64) {
 
         prepare(acct: AuthAccount) {
         
-
-
         let actorResource = acct.getCapability
-            <&{NFTContract.NFTMethodsCapability}>
-            (NFTContract.NFTMethodsCapabilityPrivatePath)
+            <&{MadbopNFTs.NFTMethodsCapability}>
+            (MadbopNFTs.NFTMethodsCapabilityPrivatePath)
             .borrow() ?? 
             panic("could not borrow a reference to the NFTMethodsCapability interface")
-            let nftTemplateIds : [AnyStruct] = [1,2,3,4,5,6]
+            let nftTemplateIds : [AnyStruct] = [1]
 
         let immutableData : {String: AnyStruct} = {
-            "image" : "https://troontechnologies.com",
+            "image" : "https://madbop.com",
             "title":"First NFT",
             "startDate":  1641199919.0 as Fix64,
             "endDate":   1642299919.0 as Fix64,
