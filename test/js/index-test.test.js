@@ -1,5 +1,5 @@
 import path from "path"
-import { init, emulator, getAccountAddress, deployContractByName, getContractCode, getContractAddress, getTransactionCode, getScriptCode, executeScript, sendTransaction } from "flow-js-testing";
+import { init, emulator, getAccountAddress, deployContractByName, getContractAddress, getTransactionCode, getScriptCode, executeScript, sendTransaction } from "flow-js-testing";
 
 jest.setTimeout(100000);
 
@@ -54,8 +54,8 @@ describe("Deployment", () => {
 
   });
 
-  test("Deploy for NFTContract", async () => {
-    const name = "NFTContract"
+  test("Deploy for MadbopNFTs", async () => {
+    const name = "MadbopNFTs"
     const to = await getAccountAddress("Bob")
     let update = true
 
@@ -75,7 +75,7 @@ describe("Deployment", () => {
     } catch (e) {
       console.log(e);
     }
-    expect(name).toBe("NFTContract");
+    expect(name).toBe("MadbopNFTs");
 
   });
 
@@ -84,11 +84,11 @@ describe("Deployment", () => {
     const to = await getAccountAddress("Charlie");
     let update = true;
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
 
     let addressMap = {
       NonFungibleToken,
-      NFTContract
+      MadbopNFTs
     };
     let result;
     try {
@@ -120,11 +120,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -158,11 +158,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -198,11 +198,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -243,11 +243,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -282,11 +282,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -321,11 +321,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -362,11 +362,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -402,11 +402,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -442,11 +442,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -485,10 +485,10 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
     };
 
     let code = await getTransactionCode({
@@ -523,11 +523,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -565,11 +565,11 @@ describe("Transactions", () => {
 
     // Generate addressMap from import statements
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract,
     };
 
@@ -602,12 +602,12 @@ describe("Scripts", () => {
     const Bob = await getAccountAddress("Bob");
 
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
     const MadbopContract = await getContractAddress("MadbopContract")
 
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
       MadbopContract
     }
     let code = await getScriptCode({
@@ -638,11 +638,11 @@ describe("Scripts", () => {
     const Bob = await getAccountAddress("Bob");
 
     const NonFungibleToken = await getContractAddress("NonFungibleToken");
-    const NFTContract = await getContractAddress("NFTContract");
+    const MadbopNFTs = await getContractAddress("MadbopNFTs");
 
     const addressMap = {
       NonFungibleToken,
-      NFTContract,
+      MadbopNFTs,
     }
     let code = await getScriptCode({
       name,

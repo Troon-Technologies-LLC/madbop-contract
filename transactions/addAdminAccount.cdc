@@ -1,5 +1,5 @@
-import NFTContract from "../contracts/NFTContract.cdc"
-import NonFungibleToken from "../contracts/NonFungibleToken.cdc"
+import MadbopNFTs from 0xa8185ff2f21792f2
+import NonFungibleToken from 0x631e88ae7f1d7c20
 
 transaction(admin: Address) {
     prepare(signer: AuthAccount) {
@@ -9,13 +9,13 @@ transaction(admin: Address) {
 
         // get the public capability from the Admin's public storage
         let TemplateAdminResource = TemplateAdminAccount.getCapability
-            <&{NFTContract.UserSpecialCapability}>
+            <&{MadbopNFTs.UserSpecialCapability}>
             (/public/UserSpecialCapability)
             .borrow()
             ?? panic("could not borrow reference to UserSpecialCapability")
 
         //get admin refrence for adding AdminCapability
-        let adminRef = signer.getCapability<&NFTContract.AdminCapability>(NFTContract.AdminCapabilityPrivate).borrow() 
+        let adminRef = signer.getCapability<&MadbopNFTs.AdminCapability>(MadbopNFTs.AdminCapabilityPrivate).borrow() 
                         ?? panic("could not get borrow the refrence")
         let userResponse = adminRef.isWhiteListedAccount(_user: admin) 
         if(userResponse == false) {
@@ -26,8 +26,8 @@ transaction(admin: Address) {
         // get the private capability from the Authorized owner of the AdminResource
         // this will be the signer of this transaction
         let specialCapability = signer.getCapability
-            <&{NFTContract.NFTMethodsCapability}>
-            (NFTContract.NFTMethodsCapabilityPrivatePath) 
+            <&{MadbopNFTs.NFTMethodsCapability}>
+            (MadbopNFTs.NFTMethodsCapabilityPrivatePath) 
 
         // if the special capability is valid...
         if specialCapability.check() {

@@ -5,23 +5,23 @@
 A common order of creating NFT would be
 
 - Create Admin Account with `transaction/setupAdminAccount.cdc`.
-- Owner then create that account Admin, and gives that account ability to create own Brand, Schema and Template with `transactions/AddAdminCapability`
+- Owner then create that account as Madbop-Admin and gives ability to create Brand, Schema and Template for Madbop contract with `transactions/AddAdminAccount.cdc`
 - Create new Brand with `transactions/createBrand.cdc` using Admin Account.
-- Create new NFT schema with `transactions/createNFTSchema.cdc` using Admin Account.
+- Create new NFT Schema with `transactions/createNFTSchema.cdc` using Admin Account.
 - Create new JukeBox Schema with `transactions/createJukeBoxSchema.cdc` using Admin Account.
 - Create new JukeBox Template with `transactions/createJukeboxTemplate.cdc` using Admin Account.
-- Create NFT Receiver with `transaction/setupAccount`.
-- Create Mint JukeBox with `transaction/mintNFT`.
-- Open JukeBox with `transaction/openJukebox`.
+- Create NFT Receiver with `transaction/setupAccount.cdc`.
+- Mint JukeBox with `transaction/mintNFT.cdc`.
+- Open JukeBox with `transaction/openJukebox.cdc`.
 
 You can also see the scripts in `scripts` to see how information
-can be read from the NFTContract.
+can be read from the MadbopNFTs and Madbop (Jukebox) smart-contracts.
 
-### NFTContract and Madbop Events
+### MadbopNFTs and Madbop Events
 
 - Contract Initialized ->
   ` pub event ContractInitialized()`
-  This event is emitted when the `NFTContract` will be initialized.
+  This event is emitted when the `MadbopNFTs` will be initialized.
 
 - Event for Brand ->
   `pub event BrandCreated(brandId: UInt64, brandName: String, author: Address, data: {String:String})`
@@ -51,21 +51,23 @@ can be read from the NFTContract.
   `pub event JukeboxOpened(nftId:UInt64,receiptAddress:Address?)`
   Emitted when a new JukeBox is created
 
+
+## MadbopNFTs Addresses
+`MadbopNFTs.cdc`: This is the main MadbopNFTs smart contract that defines the core functionality of the NFT.
+
+| Network | Contract Address     |
+| ------- | -------------------- |
+| Testnet | `0xa8185ff2f21792f2` |
+
+
 ## Madbop Addresses
 
-`Madbop.cdc`: This is the madbop smart contract that has the functionality of the jukebox.
+`MadbopContract.cdc`: This is the madbop smart contract that has the functionality of the jukebox.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
-| Testnet | `0xe9c0c532df97e099` |
+| Testnet | `0xb5660858a796e6ba` |
 
-## NFTContract Addresses
-
-`NFTContract.cdc`: This is the main NFTContract smart contract that defines the core functionality of the NFT.
-
-| Network | Contract Address     |
-| ------- | -------------------- |
-| mainnet | `0x73b22c80a051e2ff` |
 
 ### Deployment Contract on Emulator
 

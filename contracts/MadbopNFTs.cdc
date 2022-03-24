@@ -1,12 +1,11 @@
-import NonFungibleToken from "./NonFungibleToken.cdc"
+import NonFungibleToken from 0x631e88ae7f1d7c20
 
-pub contract NFTContract: NonFungibleToken {
+pub contract MadbopNFTs: NonFungibleToken {
 
     // Events
     pub event ContractInitialized()
     pub event Withdraw(id: UInt64, from: Address?)
     pub event Deposit(id: UInt64, to: Address?)
-    pub event NFTBorrowed(id: UInt64)
     pub event NFTDestroyed(id: UInt64)
     pub event NFTMinted(nftId: UInt64, templateId: UInt64, mintNumber: UInt64)
     pub event BrandCreated(brandId: UInt64, brandName: String, author: Address, data:{String: String})
@@ -38,7 +37,7 @@ pub contract NFTContract: NonFungibleToken {
     access(self) var allBrands: {UInt64: Brand}
     access(self) var allSchemas: {UInt64: Schema}
     access(self) var allTemplates: {UInt64: Template}
-    access(self) var allNFTs: {UInt64: NFTData}
+    access(self) var allNFTs: {UInt64: MadbopNFTData}
 
     // Accounts ability to add capability
     access(self) var whiteListedAccounts: [Address]
@@ -66,7 +65,7 @@ pub contract NFTContract: NonFungibleToken {
                 brandName.length > 0: "Brand name is required";
             }
 
-            let newBrandId = NFTContract.lastIssuedBrandId
+            let newBrandId = MadbopNFTs.lastIssuedBrandId
             self.brandId = newBrandId
             self.brandName = brandName
             self.author = author
@@ -89,7 +88,7 @@ pub contract NFTContract: NonFungibleToken {
                 schemaName.length > 0: "Could not create schema: name is required"
             }
 
-            let newSchemaId = NFTContract.lastIssuedSchemaId
+            let newSchemaId = MadbopNFTs.lastIssuedSchemaId
             self.schemaId = newSchemaId
             self.schemaName = schemaName
             self.author = author
@@ -108,20 +107,20 @@ pub contract NFTContract: NonFungibleToken {
 
         init(brandId: UInt64, schemaId: UInt64, maxSupply: UInt64, immutableData: {String: AnyStruct}) {
             pre {
-                NFTContract.allBrands[brandId] != nil:"Brand Id must be valid"
-                NFTContract.allSchemas[schemaId] != nil:"Schema Id must be valid"
+                MadbopNFTs.allBrands[brandId] != nil:"Brand Id must be valid"
+                MadbopNFTs.allSchemas[schemaId] != nil:"Schema Id must be valid"
                 maxSupply > 0 : "MaxSupply must be greater than zero"
                 immutableData != nil: "ImmutableData must not be nil"
             }
-
-            self.templateId = NFTContract.lastIssuedTemplateId
+            
+            self.templateId = MadbopNFTs.lastIssuedTemplateId
             self.brandId = brandId
             self.schemaId = schemaId
             self.maxSupply = maxSupply
             self.immutableData = immutableData
             self.issuedSupply = 0
             // Before creating template, we need to check template data, if it is valid against given schema or not
-            let schema = NFTContract.allSchemas[schemaId]!
+            let schema = MadbopNFTs.allSchemas[schemaId]!
             var invalidKey: String = ""
             var isValidTemplate = true
 
@@ -132,47 +131,47 @@ pub contract NFTContract: NonFungibleToken {
                     invalidKey = "key $".concat(key.concat(" not found"))
                     break
                 }
-                if schema.format[key] == NFTContract.SchemaType.String {
+                if schema.format[key] == MadbopNFTs.SchemaType.String {
                     if(value as? String == nil) {
                         isValidTemplate = false
                         invalidKey = "key $".concat(key.concat(" has type mismatch"))
                         break
                     }
                 }
-                else if schema.format[key] == NFTContract.SchemaType.Int {
+                else if schema.format[key] == MadbopNFTs.SchemaType.Int {
                     if(value as? Int == nil) {
                         isValidTemplate = false
                         invalidKey = "key $".concat(key.concat(" has type mismatch"))
                         break
                     }
                 } 
-                else if schema.format[key] == NFTContract.SchemaType.Fix64 {
+                else if schema.format[key] == MadbopNFTs.SchemaType.Fix64 {
                     if(value as? Fix64 == nil) {
                         isValidTemplate = false
                         invalidKey = "key $".concat(key.concat(" has type mismatch"))
                         break
                     }
-                }else if schema.format[key] == NFTContract.SchemaType.Bool {
+                }else if schema.format[key] == MadbopNFTs.SchemaType.Bool {
                     if(value as? Bool == nil) {
                         isValidTemplate = false
                         invalidKey = "key $".concat(key.concat(" has type mismatch"))
                         break
                     }
-                }else if schema.format[key] == NFTContract.SchemaType.Address {
+                }else if schema.format[key] == MadbopNFTs.SchemaType.Address {
                     if(value as? Address == nil) {
                         isValidTemplate = false
                         invalidKey = "key $".concat(key.concat(" has type mismatch"))
                         break
                     }
                 }
-                else if schema.format[key] == NFTContract.SchemaType.Array {
+                else if schema.format[key] == MadbopNFTs.SchemaType.Array {
                     if(value as? [AnyStruct] == nil) {
                         isValidTemplate = false
                         invalidKey = "key $".concat(key.concat(" has type mismatch"))
                         break
                     }
                 }
-                else if schema.format[key] == NFTContract.SchemaType.Any {
+                else if schema.format[key] == MadbopNFTs.SchemaType.Any {
                     if(value as? {String:AnyStruct} ==nil) {
                         isValidTemplate = false
                         invalidKey = "key $".concat(key.concat(" has type mismatch"))
@@ -195,7 +194,7 @@ pub contract NFTContract: NonFungibleToken {
     }
 
     // A structure that link template and mint-no of NFT
-    pub struct NFTData {
+    pub struct MadbopNFTData {
         pub let templateID: UInt64
         pub let mintNumber: UInt64
 
@@ -205,28 +204,41 @@ pub contract NFTContract: NonFungibleToken {
         }
     }
 
-    // The resource that represents the Troon NFTs
+    // The resource that represents the Madbop NFTs
     // 
     pub resource NFT: NonFungibleToken.INFT {
         pub let id: UInt64
-        access(contract) let data: NFTData
+        access(contract) let data: MadbopNFTData
 
         init(templateID: UInt64, mintNumber: UInt64) {
-            NFTContract.totalSupply = NFTContract.totalSupply + 1
-            self.id = NFTContract.totalSupply
-            NFTContract.allNFTs[self.id] = NFTData(templateID: templateID, mintNumber: mintNumber)
-            self.data = NFTContract.allNFTs[self.id]!
+            MadbopNFTs.totalSupply = MadbopNFTs.totalSupply + 1
+            self.id = MadbopNFTs.totalSupply
+            MadbopNFTs.allNFTs[self.id] = MadbopNFTData(templateID: templateID, mintNumber: mintNumber)
+            self.data = MadbopNFTs.allNFTs[self.id]!
             emit NFTMinted(nftId: self.id, templateId: templateID, mintNumber: mintNumber)
         }
         destroy(){
             emit NFTDestroyed(id: self.id)
         }
     }
+    pub resource interface MadbopNFTsCollectionPublic {
+        pub fun deposit(token: @NonFungibleToken.NFT)
+        pub fun getIDs(): [UInt64]
+        pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT
+        pub fun borrowMadbopNFTs_NFT(id: UInt64): &MadbopNFTs.NFT? {
+            // If the result isn't nil, the id of the returned reference
+            // should be the same as the argument to the function
+            post {
+                (result == nil) || (result?.id == id):
+                    "Cannot borrow MadbopNFTs reference: The ID of the returned reference is incorrect"
+            }
+        }
+    }
 
     // Collection is a resource that every user who owns NFTs 
     // will store in their account to manage their NFTS
     //
-    pub resource Collection: NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic {
+    pub resource Collection: MadbopNFTsCollectionPublic, NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic {
         pub var ownedNFTs: @{UInt64: NonFungibleToken.NFT}
 
         pub fun withdraw(withdrawID: UInt64): @NonFungibleToken.NFT {
@@ -241,7 +253,7 @@ pub contract NFTContract: NonFungibleToken {
         }
 
         pub fun deposit(token: @NonFungibleToken.NFT) {
-            let token <- token as! @NFTContract.NFT
+            let token <- token as! @MadbopNFTs.NFT
             let id = token.id
             let oldToken <- self.ownedNFTs[id] <- token
             if self.owner?.address != nil {
@@ -251,8 +263,17 @@ pub contract NFTContract: NonFungibleToken {
         }
 
         pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT {
-            emit NFTBorrowed(id:id)
+
             return &self.ownedNFTs[id] as &NonFungibleToken.NFT
+        }
+        pub fun borrowMadbopNFTs_NFT(id: UInt64): &MadbopNFTs.NFT? {
+            if self.ownedNFTs[id] != nil {
+                let ref = &self.ownedNFTs[id] as auth &NonFungibleToken.NFT
+                return ref as! &MadbopNFTs.NFT
+            }
+            else{
+                return nil
+            }
         }
 
         init() {
@@ -283,13 +304,13 @@ pub contract NFTContract: NonFungibleToken {
         
         pub fun addwhiteListedAccount(_user: Address) {
             pre{
-                NFTContract.whiteListedAccounts.contains(_user) == false: "user already exist"
+                MadbopNFTs.whiteListedAccounts.contains(_user) == false: "user already exist"
             }
-            NFTContract.whiteListedAccounts.append(_user)
+            MadbopNFTs.whiteListedAccounts.append(_user)
         }
 
         pub fun isWhiteListedAccount(_user: Address): Bool {
-            return NFTContract.whiteListedAccounts.contains(_user)
+            return MadbopNFTs.whiteListedAccounts.contains(_user)
         }
 
         init(){}
@@ -312,7 +333,7 @@ pub contract NFTContract: NonFungibleToken {
                 // valid before executing the method
                 cap.borrow() != nil: "could not borrow a reference to the SpecialCapability"
                 self.capability == nil: "resource already has the SpecialCapability"
-                NFTContract.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
+                MadbopNFTs.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
             }
             // add the SpecialCapability
             self.capability = cap
@@ -324,14 +345,14 @@ pub contract NFTContract: NonFungibleToken {
                 // the transaction will instantly revert if
                 // the capability has not been added
                 self.capability != nil: "I don't have the special capability :("
-                NFTContract.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
+                MadbopNFTs.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
             }
 
             let newBrand = Brand(brandName: brandName, author: self.owner?.address!, data: data)
-            NFTContract.allBrands[NFTContract.lastIssuedBrandId] = newBrand
-            emit BrandCreated(brandId: NFTContract.lastIssuedBrandId ,brandName: brandName, author: self.owner?.address!, data: data)
-            self.ownedBrands[NFTContract.lastIssuedBrandId] = newBrand 
-            NFTContract.lastIssuedBrandId = NFTContract.lastIssuedBrandId + 1
+            MadbopNFTs.allBrands[MadbopNFTs.lastIssuedBrandId] = newBrand
+            emit BrandCreated(brandId: MadbopNFTs.lastIssuedBrandId ,brandName: brandName, author: self.owner?.address!, data: data)
+            self.ownedBrands[MadbopNFTs.lastIssuedBrandId] = newBrand 
+            MadbopNFTs.lastIssuedBrandId = MadbopNFTs.lastIssuedBrandId + 1
         }
 
         //method to update the existing Brand, only author of brand can update this brand
@@ -340,16 +361,16 @@ pub contract NFTContract: NonFungibleToken {
                 // the transaction will instantly revert if
                 // the capability has not been added
                 self.capability != nil: "I don't have the special capability :("
-                NFTContract.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
-                NFTContract.allBrands[brandId] != nil: "brand Id does not exists"
+                MadbopNFTs.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
+                MadbopNFTs.allBrands[brandId] != nil: "brand Id does not exists"
             }
 
-            let oldBrand = NFTContract.allBrands[brandId]
+            let oldBrand = MadbopNFTs.allBrands[brandId]
             if self.owner?.address! != oldBrand!.author {
                 panic("No permission to update others brand")
             }
 
-            NFTContract.allBrands[brandId]!.update(data: data)
+            MadbopNFTs.allBrands[brandId]!.update(data: data)
             emit BrandUpdated(brandId: brandId, brandName: oldBrand!.brandName, author: oldBrand!.author, data: data)
         }
 
@@ -359,14 +380,14 @@ pub contract NFTContract: NonFungibleToken {
                 // the transaction will instantly revert if 
                 // the capability has not been added
                 self.capability != nil: "I don't have the special capability :("
-                NFTContract.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
+                MadbopNFTs.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
             }
 
             let newSchema = Schema(schemaName: schemaName, author: self.owner?.address!, format: format)
-            NFTContract.allSchemas[NFTContract.lastIssuedSchemaId] = newSchema
-            emit SchemaCreated(schemaId: NFTContract.lastIssuedSchemaId, schemaName: schemaName, author: self.owner?.address!)
-            self.ownedSchemas[NFTContract.lastIssuedSchemaId] = newSchema
-            NFTContract.lastIssuedSchemaId = NFTContract.lastIssuedSchemaId + 1
+            MadbopNFTs.allSchemas[MadbopNFTs.lastIssuedSchemaId] = newSchema
+            emit SchemaCreated(schemaId: MadbopNFTs.lastIssuedSchemaId, schemaName: schemaName, author: self.owner?.address!)
+            self.ownedSchemas[MadbopNFTs.lastIssuedSchemaId] = newSchema
+            MadbopNFTs.lastIssuedSchemaId = MadbopNFTs.lastIssuedSchemaId + 1
             
         }
 
@@ -376,16 +397,16 @@ pub contract NFTContract: NonFungibleToken {
                 // the transaction will instantly revert if 
                 // the capability has not been added
                 self.capability != nil: "I don't have the special capability :("
-                NFTContract.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
+                MadbopNFTs.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
                 self.ownedBrands[brandId] != nil: "Collection Id Must be valid"
                 self.ownedSchemas[schemaId] != nil: "Schema Id Must be valid"
             }
 
             let newTemplate = Template(brandId: brandId, schemaId: schemaId, maxSupply: maxSupply, immutableData: immutableData)
-            NFTContract.allTemplates[NFTContract.lastIssuedTemplateId] = newTemplate
-            emit TemplateCreated(templateId: NFTContract.lastIssuedTemplateId, brandId: brandId, schemaId: schemaId, maxSupply: maxSupply)
-            self.ownedTemplates[NFTContract.lastIssuedTemplateId] = newTemplate
-            NFTContract.lastIssuedTemplateId = NFTContract.lastIssuedTemplateId + 1
+            MadbopNFTs.allTemplates[MadbopNFTs.lastIssuedTemplateId] = newTemplate
+            emit TemplateCreated(templateId: MadbopNFTs.lastIssuedTemplateId, brandId: brandId, schemaId: schemaId, maxSupply: maxSupply)
+            self.ownedTemplates[MadbopNFTs.lastIssuedTemplateId] = newTemplate
+            MadbopNFTs.lastIssuedTemplateId = MadbopNFTs.lastIssuedTemplateId + 1
         }
 
         //method to mint NFT, only access by the verified user
@@ -394,16 +415,16 @@ pub contract NFTContract: NonFungibleToken {
                 // the transaction will instantly revert if 
                 // the capability has not been added
                 self.capability != nil: "I don't have the special capability :("
-                NFTContract.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
+                MadbopNFTs.whiteListedAccounts.contains(self.owner!.address): "you are not authorized for this action"
                 self.ownedTemplates[templateId]!= nil: "Minter does not have specific template Id"
-                NFTContract.allTemplates[templateId] != nil: "Template Id must be valid"
+                MadbopNFTs.allTemplates[templateId] != nil: "Template Id must be valid"
                 }
             let receiptAccount = getAccount(account)
             let recipientCollection = receiptAccount
-                .getCapability(NFTContract.CollectionPublicPath)
-                .borrow<&{NonFungibleToken.CollectionPublic}>()
+                .getCapability(MadbopNFTs.CollectionPublicPath)
+                .borrow<&{MadbopNFTs.MadbopNFTsCollectionPublic}>()
                 ?? panic("Could not get receiver reference to the NFT Collection")
-            var newNFT: @NFT <- create NFT(templateID: templateId, mintNumber: NFTContract.allTemplates[templateId]!.incrementIssuedSupply())
+            var newNFT: @NFT <- create NFT(templateID: templateId, mintNumber: MadbopNFTs.allTemplates[templateId]!.incrementIssuedSupply())
             recipientCollection.deposit(token: <-newNFT)
         }
 
@@ -417,7 +438,7 @@ pub contract NFTContract: NonFungibleToken {
     
     //method to create empty Collection
     pub fun createEmptyCollection(): @NonFungibleToken.Collection {
-        return <- create NFTContract.Collection()
+        return <- create MadbopNFTs.Collection()
     }
 
     //method to create Admin Resources
@@ -427,49 +448,49 @@ pub contract NFTContract: NonFungibleToken {
 
     //method to get all brands
     pub fun getAllBrands(): {UInt64: Brand} {
-        return NFTContract.allBrands
+        return MadbopNFTs.allBrands
     }
 
     //method to get brand by id
     pub fun getBrandById(brandId: UInt64): Brand {
         pre {
-            NFTContract.allBrands[brandId] != nil: "brand Id does not exists"
+            MadbopNFTs.allBrands[brandId] != nil: "brand Id does not exists"
         }
-        return NFTContract.allBrands[brandId]!
+        return MadbopNFTs.allBrands[brandId]!
     }
 
     //method to get all schema
     pub fun getAllSchemas(): {UInt64: Schema} {
-        return NFTContract.allSchemas
+        return MadbopNFTs.allSchemas
     }
 
     //method to get schema by id
     pub fun getSchemaById(schemaId: UInt64): Schema {
         pre {
-            NFTContract.allSchemas[schemaId] != nil: "schema id does not exist"
+            MadbopNFTs.allSchemas[schemaId] != nil: "schema id does not exist"
         }
-        return NFTContract.allSchemas[schemaId]!
+        return MadbopNFTs.allSchemas[schemaId]!
     }
 
     //method to get all templates
     pub fun getAllTemplates(): {UInt64: Template} {
-        return NFTContract.allTemplates
+        return MadbopNFTs.allTemplates
     }
 
     //method to get template by id
     pub fun getTemplateById(templateId: UInt64): Template {
         pre {
-            NFTContract.allTemplates[templateId]!=nil: "Template id does not exist"
+            MadbopNFTs.allTemplates[templateId] != nil: "Template id does not exist"
         }
-        return NFTContract.allTemplates[templateId]!
+        return MadbopNFTs.allTemplates[templateId]!
     } 
 
     //method to get nft-data by id
-    pub fun getNFTDataById(nftId: UInt64): NFTData {
+    pub fun getMadbopNFTDataById(nftId: UInt64): MadbopNFTData {
         pre {
-            NFTContract.allNFTs[nftId]!=nil:"nft id does not exist"
+            MadbopNFTs.allNFTs[nftId] != nil:"nft id does not exist"
         }
-        return NFTContract.allNFTs[nftId]!
+        return MadbopNFTs.allNFTs[nftId]!
     }
 
     //Initialize all variables with default values
@@ -484,9 +505,9 @@ pub contract NFTContract: NonFungibleToken {
         self.allNFTs = {}
         self.whiteListedAccounts = [self.account.address]
 
-        self.AdminResourceStoragePath = /storage/TroonAdminResource
-        self.CollectionStoragePath = /storage/TroonCollection
-        self.CollectionPublicPath = /public/TroonCollection
+        self.AdminResourceStoragePath = /storage/MadbopAdminResource
+        self.CollectionStoragePath = /storage/MadbopCollection
+        self.CollectionPublicPath = /public/MadbopCollection
         self.AdminStorageCapability = /storage/AdminCapability
         self.AdminCapabilityPrivate = /private/AdminCapability
         self.NFTMethodsCapabilityPrivatePath = /private/NFTMethodsCapability
