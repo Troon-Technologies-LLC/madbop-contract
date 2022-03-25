@@ -1,5 +1,5 @@
 import MadbopNFTs from 0xa8185ff2f21792f2
-import NonFungibleToken from 0x631e88ae7f1d7c20
+import NonFungibleToken from 0x1d7e57aa55817448
 
 pub fun main() : [UInt64]{
     let account1 = getAccount(0xf3e107721f7302e7)
