@@ -1,6 +1,6 @@
 import MadbopContract from  0xb5660858a796e6ba
 import MadbopNFTs from 0xa8185ff2f21792f2
-import NonFungibleToken from 0x631e88ae7f1d7c20
+import NonFungibleToken from 0x1d7e57aa55817448
 transaction(adminAddress:Address, withdrawID:UInt64, receiptAddress:Address){
     prepare(acct: AuthAccount) {
         let account = getAccount(0xf3fcd2c1a78f5eee)
