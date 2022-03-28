@@ -1,4 +1,4 @@
-import MadbopNFTs from "./MadbopNFTs.cdc"
+import MadbopNFTs from 0xe8aeee7a48e71d78
 import NonFungibleToken from 0x1d7e57aa55817448
 
 pub contract MadbopContract {
@@ -72,7 +72,8 @@ pub contract MadbopContract {
             assert(openDate >= getCurrentBlock().timestamp, message: "open date must be greater than current date")
             // check all templates under the jukexbox are created or not
             var allNftTemplateExists = true;
-            let allIds = templateData.immutableData["nftTemplates"]! as! [AnyStruct]
+            let templateImmutableData = templateData.getImmutableData()
+            let allIds = templateImmutableData["nftTemplates"]! as! [AnyStruct]
             assert(allIds.length <= 5, message: "templates limit exceeded")
             for tempID in allIds {
                 var castedTempId = UInt64(tempID as! Int)
@@ -113,7 +114,8 @@ pub contract MadbopContract {
             assert(MadbopContract.allJukeboxes[jukeboxMadbopNFTData.templateID] != nil, message: "Jukebox is not registered") 
             // check if current date is greater or equal than opendate 
             assert(MadbopContract.allJukeboxes[jukeboxMadbopNFTData.templateID]!.openDate <= getCurrentBlock().timestamp, message: "current date must be greater than or equal to the open date")
-            let allIds = jukeboxTemplateData.immutableData["nftTemplates"]! as! [AnyStruct]
+            let templateImmutableData = jukeboxTemplateData.getImmutableData()
+            let allIds = templateImmutableData["nftTemplates"]! as! [AnyStruct]
             assert(allIds.length <= 5, message: "templates limit exceeded")
             for tempID in allIds {
                 var castedTempId = UInt64(tempID as! Int)

@@ -51,14 +51,13 @@ can be read from the MadbopNFTs and Madbop (Jukebox) smart-contracts.
   `pub event JukeboxOpened(nftId:UInt64,receiptAddress:Address?)`
   Emitted when a new JukeBox is created
 
-
 ## MadbopNFTs Addresses
+
 `MadbopNFTs.cdc`: This is the main MadbopNFTs smart contract that defines the core functionality of the NFT.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
-| Testnet | `0xa8185ff2f21792f2` |
-
+| Testnet | `0xe8aeee7a48e71d78` |
 
 ## Madbop Addresses
 
@@ -67,7 +66,6 @@ can be read from the MadbopNFTs and Madbop (Jukebox) smart-contracts.
 | Network | Contract Address     |
 | ------- | -------------------- |
 | Testnet | `0xb5660858a796e6ba` |
-
 
 ### Deployment Contract on Emulator
 
