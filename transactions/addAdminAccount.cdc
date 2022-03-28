@@ -1,5 +1,4 @@
-import MadbopNFTs from 0xa8185ff2f21792f2
-import NonFungibleToken from 0x1d7e57aa55817448
+import MadbopNFTs from 0x179b6b1cb6755e31
 
 transaction(admin: Address) {
     prepare(signer: AuthAccount) {

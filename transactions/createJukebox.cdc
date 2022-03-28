@@ -1,4 +1,4 @@
-import MadbopContract from  0xb5660858a796e6ba
+import MadbopContract from  0x179b6b1cb6755e31
 
 transaction(templateId:UInt64,openDate:UFix64){
     let adminRef: &MadbopContract.Jukebox

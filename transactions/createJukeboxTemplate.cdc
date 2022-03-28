@@ -1,5 +1,4 @@
-import MadbopNFTs from 0xa8185ff2f21792f2
-import NonFungibleToken from 0x1d7e57aa55817448
+import MadbopNFTs from 0x179b6b1cb6755e31
 transaction(brandId:UInt64, schemaId:UInt64, maxSupply:UInt64) {
 
         prepare(acct: AuthAccount) {
@@ -9,7 +8,7 @@ transaction(brandId:UInt64, schemaId:UInt64, maxSupply:UInt64) {
             (MadbopNFTs.NFTMethodsCapabilityPrivatePath)
             .borrow() ?? 
             panic("could not borrow a reference to the NFTMethodsCapability interface")
-            let nftTemplateIds : [AnyStruct] = [1]
+            let nftTemplateIds : [AnyStruct] = [4]
 
         let immutableData : {String: AnyStruct} = {
             "image" : "https://madbop.com",

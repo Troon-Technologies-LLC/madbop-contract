@@ -1,4 +1,4 @@
-import MadbopContract from  0xb5660858a796e6ba
+import MadbopContract from  0x179b6b1cb6755e31
 transaction(brandId:UInt64, jukeboxSchemaId:UInt64, nftSchemaId:UInt64){
     let adminRef: &MadbopContract.Jukebox
     prepare(acct: AuthAccount) {

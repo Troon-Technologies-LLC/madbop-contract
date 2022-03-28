@@ -1,9 +1,8 @@
-import MadbopContract from  0xb5660858a796e6ba
-import MadbopNFTs from 0xa8185ff2f21792f2
-import NonFungibleToken from 0x1d7e57aa55817448
-transaction(adminAddress:Address, withdrawID:UInt64, receiptAddress:Address){
+import MadbopContract from  0x179b6b1cb6755e31
+import MadbopNFTs from 0x179b6b1cb6755e31
+transaction(){
     prepare(acct: AuthAccount) {
-        let account = getAccount(0xf3fcd2c1a78f5eee)
+        let account = getAccount(0x179b6b1cb6755e31)
         let adminRef = account
                 .getCapability<&{MadbopContract.JukeboxPublic}>(MadbopContract.JukeboxPublicPath)
                 .borrow()
@@ -12,7 +11,7 @@ transaction(adminAddress:Address, withdrawID:UInt64, receiptAddress:Address){
         let collectionRef =  acct.borrow<&MadbopNFTs.Collection>(from: MadbopNFTs.CollectionStoragePath)
         ??panic("could not borrow a reference to the the stored nft Collection")
 
-        adminRef.openJukebox(jukeboxNFT : <- collectionRef.withdraw(withdrawID: 1), receiptAddress: 0xe03daebed8ca0615)  
+        adminRef.openJukebox(jukeboxNFT : <- collectionRef.withdraw(withdrawID: 3), receiptAddress: 0x01cf0e2f2f715450)  
     }
 
 
