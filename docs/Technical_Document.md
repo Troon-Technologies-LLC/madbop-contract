@@ -57,7 +57,7 @@ can be read from the MadbopNFTs.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
-| Testnet | `0xb5660858a796e6ba` |
+| Testnet | `0x46e63ea8da5c4335` |
 
 ## MadbopNFTs Addresses
 
@@ -65,8 +65,8 @@ can be read from the MadbopNFTs.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
-| mainnet | `0x1e075b24abe6eca6` |
-| testnet | `0xa8185ff2f21792f2` |
+| mainnet | `0xe8aeee7a48e71d78` |
+| testnet | `0x46e63ea8da5c4335` |
 
 ### Deployment Contract on Emulator
 
