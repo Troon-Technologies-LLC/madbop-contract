@@ -5,17 +5,17 @@
 A common order of creating NFT would be
 
 - Create Admin Account with `transaction/setupAdminAccount.cdc`.
-- Owner then create that account Admin, and gives that account ability to create own Brand, Schema and Template with `transactions/AddAdminAccount.cdc`
+- Owner then create that account as Madbop-Admin and gives ability to create Brand, Schema and Template for Madbop contract with `transactions/AddAdminAccount.cdc`
 - Create new Brand with `transactions/createBrand.cdc` using Admin Account.
-- Create new NFT schema with `transactions/createNFTSchema.cdc` using Admin Account.
+- Create new NFT Schema with `transactions/createNFTSchema.cdc` using Admin Account.
 - Create new JukeBox Schema with `transactions/createJukeBoxSchema.cdc` using Admin Account.
 - Create new JukeBox Template with `transactions/createJukeboxTemplate.cdc` using Admin Account.
-- Create NFT Receiver with `transaction/setupAccount`.
-- Create Mint JukeBox with `transaction/mintNFT`.
-- Open JukeBox with `transaction/openJukebox`.
+- Create NFT Receiver with `transaction/setupAccount.cdc`.
+- Mint JukeBox with `transaction/mintNFT.cdc`.
+- Open JukeBox with `transaction/openJukebox.cdc`.
 
 You can also see the scripts in `scripts` to see how information
-can be read from the MadbopNFTs.
+can be read from the MadbopNFTs and Madbop (Jukebox) smart-contracts.
 
 ### MadbopNFTs and Madbop Events
 
@@ -51,20 +51,22 @@ can be read from the MadbopNFTs.
   `pub event JukeboxOpened(nftId:UInt64,receiptAddress:Address?)`
   Emitted when a new JukeBox is created
 
-## Madbop Addresses
-
-`Madbop.cdc`: This is the madbop smart contract that has the functionality of the jukebox.
-
-| Network | Contract Address     |
-| ------- | -------------------- |
-| Testnet | `0x46e63ea8da5c4335` |
-
 ## MadbopNFTs Addresses
 
 `MadbopNFTs.cdc`: This is the main MadbopNFTs smart contract that defines the core functionality of the NFT.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
+| Testnet | `0x46e63ea8da5c4335` |
+
+
+## Madbop Addresses
+
+`MadbopContract.cdc`: This is the madbop smart contract that has the functionality of the jukebox.
+
+| Network | Contract Address     |
+| ------- | -------------------- |
+
 | mainnet | `0xe8aeee7a48e71d78` |
 | testnet | `0x46e63ea8da5c4335` |
 

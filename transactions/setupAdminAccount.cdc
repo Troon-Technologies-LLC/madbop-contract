@@ -1,5 +1,6 @@
 import MadbopNFTs from 0xe8aeee7a48e71d78
 import NonFungibleToken from 0x1d7e57aa55817448
+
 transaction() {
     prepare(signer: AuthAccount) {
         // save the resource to the signer's account storage
@@ -23,7 +24,7 @@ transaction() {
         signer.save( <- collection, to:MadbopNFTs.CollectionStoragePath)
         log("Collection created for account".concat(signer.address.toString()))
         // create a public capability for the Collection
-        signer.link<&{NonFungibleToken.CollectionPublic}>(MadbopNFTs.CollectionPublicPath, target:MadbopNFTs.CollectionStoragePath)
+        signer.link<&{MadbopNFTs.MadbopNFTsCollectionPublic}>(MadbopNFTs.CollectionPublicPath, target:MadbopNFTs.CollectionStoragePath)
         log("Capability created")
     }
 }

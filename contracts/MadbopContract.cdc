@@ -72,7 +72,8 @@ pub contract MadbopContract {
             assert(openDate >= getCurrentBlock().timestamp, message: "open date must be greater than current date")
             // check all templates under the jukexbox are created or not
             var allNftTemplateExists = true;
-            let allIds = templateData.immutableData["nftTemplates"]! as! [AnyStruct]
+            let templateImmutableData = templateData.getImmutableData()
+            let allIds = templateImmutableData["nftTemplates"]! as! [AnyStruct]
             assert(allIds.length <= 5, message: "templates limit exceeded")
             for tempID in allIds {
                 var castedTempId = UInt64(tempID as! Int)
@@ -107,13 +108,14 @@ pub contract MadbopContract {
                 jukeboxNFT != nil : "jukebox nft must not be null"
                 receiptAddress != nil : "receipt address must not be null"
             }
-            var jukeboxNFTdata = MadbopNFTs.getNFTDataById(nftId: jukeboxNFT.id)
-            var jukeboxTemplateData = MadbopNFTs.getTemplateById(templateId: jukeboxNFTdata.templateID)
+            var jukeboxMadbopNFTData = MadbopNFTs.getMadbopNFTDataById(nftId: jukeboxNFT.id)
+            var jukeboxTemplateData = MadbopNFTs.getTemplateById(templateId: jukeboxMadbopNFTData.templateID)
             // check if it is regiesterd or not
-            assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID] != nil, message: "Jukebox is not registered") 
+            assert(MadbopContract.allJukeboxes[jukeboxMadbopNFTData.templateID] != nil, message: "Jukebox is not registered") 
             // check if current date is greater or equal than opendate 
-            assert(MadbopContract.allJukeboxes[jukeboxNFTdata.templateID]!.openDate <= getCurrentBlock().timestamp, message: "open date must be less than or equal to the current date")
-            let allIds = jukeboxTemplateData.immutableData["nftTemplates"]! as! [AnyStruct]
+            assert(MadbopContract.allJukeboxes[jukeboxMadbopNFTData.templateID]!.openDate <= getCurrentBlock().timestamp, message: "current date must be greater than or equal to the open date")
+            let templateImmutableData = jukeboxTemplateData.getImmutableData()
+            let allIds = templateImmutableData["nftTemplates"]! as! [AnyStruct]
             assert(allIds.length <= 5, message: "templates limit exceeded")
             for tempID in allIds {
                 var castedTempId = UInt64(tempID as! Int)

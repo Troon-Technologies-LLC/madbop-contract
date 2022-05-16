@@ -6,7 +6,6 @@ pub contract MadbopNFTs: NonFungibleToken {
     pub event ContractInitialized()
     pub event Withdraw(id: UInt64, from: Address?)
     pub event Deposit(id: UInt64, to: Address?)
-    pub event NFTBorrowed(id: UInt64)
     pub event NFTDestroyed(id: UInt64)
     pub event NFTMinted(nftId: UInt64, templateId: UInt64, mintNumber: UInt64)
     pub event BrandCreated(brandId: UInt64, brandName: String, author: Address, data:{String: String})
@@ -38,7 +37,7 @@ pub contract MadbopNFTs: NonFungibleToken {
     access(self) var allBrands: {UInt64: Brand}
     access(self) var allSchemas: {UInt64: Schema}
     access(self) var allTemplates: {UInt64: Template}
-    access(self) var allNFTs: {UInt64: NFTData}
+    access(self) var allNFTs: {UInt64: MadbopNFTData}
 
     // Accounts ability to add capability
     access(self) var whiteListedAccounts: [Address]
@@ -104,7 +103,7 @@ pub contract MadbopNFTs: NonFungibleToken {
         pub let schemaId: UInt64
         pub var maxSupply: UInt64
         pub var issuedSupply: UInt64
-        pub var immutableData: {String: AnyStruct}
+        access(contract) var immutableData: {String: AnyStruct}
 
         init(brandId: UInt64, schemaId: UInt64, maxSupply: UInt64, immutableData: {String: AnyStruct}) {
             pre {
@@ -183,6 +182,9 @@ pub contract MadbopNFTs: NonFungibleToken {
             assert(isValidTemplate, message: "invalid template data. Error: ".concat(invalidKey))
         }
 
+        pub fun getImmutableData(): {String:AnyStruct} {
+            return self.immutableData
+        }
         // a method to increment issued supply for template
         access(contract) fun incrementIssuedSupply(): UInt64 {
             pre {
@@ -195,7 +197,7 @@ pub contract MadbopNFTs: NonFungibleToken {
     }
 
     // A structure that link template and mint-no of NFT
-    pub struct NFTData {
+    pub struct MadbopNFTData {
         pub let templateID: UInt64
         pub let mintNumber: UInt64
 
@@ -209,12 +211,12 @@ pub contract MadbopNFTs: NonFungibleToken {
     // 
     pub resource NFT: NonFungibleToken.INFT {
         pub let id: UInt64
-        access(contract) let data: NFTData
+        access(contract) let data: MadbopNFTData
 
         init(templateID: UInt64, mintNumber: UInt64) {
             MadbopNFTs.totalSupply = MadbopNFTs.totalSupply + 1
             self.id = MadbopNFTs.totalSupply
-            MadbopNFTs.allNFTs[self.id] = NFTData(templateID: templateID, mintNumber: mintNumber)
+            MadbopNFTs.allNFTs[self.id] = MadbopNFTData(templateID: templateID, mintNumber: mintNumber)
             self.data = MadbopNFTs.allNFTs[self.id]!
             emit NFTMinted(nftId: self.id, templateId: templateID, mintNumber: mintNumber)
         }
@@ -222,11 +224,24 @@ pub contract MadbopNFTs: NonFungibleToken {
             emit NFTDestroyed(id: self.id)
         }
     }
+    pub resource interface MadbopNFTsCollectionPublic {
+        pub fun deposit(token: @NonFungibleToken.NFT)
+        pub fun getIDs(): [UInt64]
+        pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT
+        pub fun borrowMadbopNFTs_NFT(id: UInt64): &MadbopNFTs.NFT? {
+            // If the result isn't nil, the id of the returned reference
+            // should be the same as the argument to the function
+            post {
+                (result == nil) || (result?.id == id):
+                    "Cannot borrow MadbopNFTs reference: The ID of the returned reference is incorrect"
+            }
+        }
+    }
 
     // Collection is a resource that every user who owns NFTs 
     // will store in their account to manage their NFTS
     //
-    pub resource Collection: NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic {
+    pub resource Collection: MadbopNFTsCollectionPublic, NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic {
         pub var ownedNFTs: @{UInt64: NonFungibleToken.NFT}
 
         pub fun withdraw(withdrawID: UInt64): @NonFungibleToken.NFT {
@@ -251,8 +266,17 @@ pub contract MadbopNFTs: NonFungibleToken {
         }
 
         pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT {
-            emit NFTBorrowed(id:id)
+
             return &self.ownedNFTs[id] as &NonFungibleToken.NFT
+        }
+        pub fun borrowMadbopNFTs_NFT(id: UInt64): &MadbopNFTs.NFT? {
+            if self.ownedNFTs[id] != nil {
+                let ref = &self.ownedNFTs[id] as auth &NonFungibleToken.NFT
+                return ref as! &MadbopNFTs.NFT
+            }
+            else{
+                return nil
+            }
         }
 
         init() {
@@ -401,7 +425,7 @@ pub contract MadbopNFTs: NonFungibleToken {
             let receiptAccount = getAccount(account)
             let recipientCollection = receiptAccount
                 .getCapability(MadbopNFTs.CollectionPublicPath)
-                .borrow<&{NonFungibleToken.CollectionPublic}>()
+                .borrow<&{MadbopNFTs.MadbopNFTsCollectionPublic}>()
                 ?? panic("Could not get receiver reference to the NFT Collection")
             var newNFT: @NFT <- create NFT(templateID: templateId, mintNumber: MadbopNFTs.allTemplates[templateId]!.incrementIssuedSupply())
             recipientCollection.deposit(token: <-newNFT)
@@ -465,7 +489,7 @@ pub contract MadbopNFTs: NonFungibleToken {
     } 
 
     //method to get nft-data by id
-    pub fun getNFTDataById(nftId: UInt64): NFTData {
+    pub fun getMadbopNFTDataById(nftId: UInt64): MadbopNFTData {
         pre {
             MadbopNFTs.allNFTs[nftId] != nil:"nft id does not exist"
         }
