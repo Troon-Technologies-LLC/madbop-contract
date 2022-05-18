@@ -1,4 +1,6 @@
-import MadbopNFTs from 0x179b6b1cb6755e31
+import MadbopNFTs from 0xe8aeee7a48e71d78
+import NonFungibleToken from 0x1d7e57aa55817448
+
 transaction() {
     prepare(signer: AuthAccount) {
         // save the resource to the signer's account storage

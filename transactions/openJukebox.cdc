@@ -1,5 +1,7 @@
-import MadbopContract from  0x179b6b1cb6755e31
-import MadbopNFTs from 0x179b6b1cb6755e31
+
+import MadbopContract from  0xe8aeee7a48e71d78
+import MadbopNFTs from 0xe8aeee7a48e71d78
+import NonFungibleToken from 0x1d7e57aa55817448
 transaction(){
     prepare(acct: AuthAccount) {
         let account = getAccount(0x179b6b1cb6755e31)

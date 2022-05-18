@@ -57,7 +57,8 @@ can be read from the MadbopNFTs and Madbop (Jukebox) smart-contracts.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
-| Testnet | `0xe8aeee7a48e71d78` |
+| Mainnet | `0xe8aeee7a48e71d78` |
+| Testnet | `0x46e63ea8da5c4335` |
 
 ## Madbop Addresses
 
@@ -65,7 +66,8 @@ can be read from the MadbopNFTs and Madbop (Jukebox) smart-contracts.
 
 | Network | Contract Address     |
 | ------- | -------------------- |
-| Testnet | `0xb5660858a796e6ba` |
+| Mainnet | `0xe8aeee7a48e71d78` |
+| Testnet | `0x46e63ea8da5c4335` |
 
 ### Deployment Contract on Emulator
 
